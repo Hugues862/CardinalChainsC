@@ -20,27 +20,16 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "cell.h"
 
 int main() 
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1000;
+    const int screenHeight = 1000;
 
     InitWindow(screenWidth, screenHeight, "raylib");
-
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 10.0f, 10.0f, 8.0f };
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-    camera.fovy = 60.0f;
-    camera.projection = CAMERA_PERSPECTIVE;
-    
-    SetCameraMode(camera, CAMERA_ORBITAL);
-
-    Vector3 cubePosition = { 0 };
-
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 

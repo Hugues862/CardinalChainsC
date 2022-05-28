@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include "raylib.h"
 
 typedef struct gameCell
 {
@@ -10,9 +11,16 @@ typedef struct gameCell
     
 } Cell;
 
-/* Cell** createArray(short** size){
+#pragma region Cells & Level handling
 
-    Cell** arr;
-    
+Cell createNewCell(int value, int color, int path);
+int*** randomArray();
+int*** baseArray(short level);
+Cell** level(short level);
+Color getColor(int colorCode);
 
-} */
+#pragma endregion
+
+void drawLevel(Cell** arr);
+
+#pragma region Drawing Handling
