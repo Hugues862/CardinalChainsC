@@ -27,6 +27,7 @@ int main()
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
     const int screenHeight = 450;
+    // Cell** arr = level(1);
 
     InitWindow(screenWidth, screenHeight, "raylib");
 
