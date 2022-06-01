@@ -43,7 +43,7 @@ void drawLevel(Cell** arr, int arrWidth, int arrHeight){
                     int posX = 0, posY = 0;
                     hoverOn(&posX, &posY, sqrSide, margin);
 
-                    if (conditions(prevX, prevY, posX, posY)){
+                    if (conditions(arr, prevX, prevY, posX, posY)){
                         arr[posY][posX].selected = true;
                         drawRect(posX, posY, sqrSide, margin, selectColor);
                         
@@ -54,7 +54,7 @@ void drawLevel(Cell** arr, int arrWidth, int arrHeight){
 
                 if (IsMouseButtonReleased(1)){
 
-                    checkWin(arr[y][x].color);
+                    checkWin(arr, arr[y][x].color, arrWidth, arrHeight);
 
                 }
             }

@@ -30,8 +30,8 @@ Color getColor(int colorCode);
 void randomArray(int arr[11][11]);
 void baseArray(int level, int arr[11][11]); // work in progress do not touch
 void genLevel(int level, Cell** arr, int* width, int* height);
-bool conditions(int currX, int currY, int nextX, int nextY);
-void checkWin(int color);
+bool conditions(Cell** arr, int currX, int currY, int nextX, int nextY);
+void checkWin(Cell** arr, int color, int width, int height);
 
 // #pragma endregion
 

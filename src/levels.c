@@ -149,15 +149,48 @@ Color getColor(int colorCode){
     return WHITE;
 }
 
-bool conditions(int currX, int currY, int nextX, int nextY){
+bool conditions(Cell** arr, int currX, int currY, int nextX, int nextY){
 
-    // Will check if the 
-    return true;
+    // Checks if hovered cell is same color, same value or +1 from previous cell
+
+    if (arr[currY][currX].color == arr[nextY][nextX].color){
+
+        if (arr[currY][currX].value == arr[nextY][nextX].value || arr[currY][currX].value + 1 == arr[nextY][nextX].value){
+            return true;
+        }
+    }
+
+    return false;
 
 }
 
-void checkWin(int color){
+void checkWin(Cell** arr, int color, int width, int height){
 
     // Will check if every cell of X color is selected, if yes turn Correct into True
 
+    bool change = true;
+
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+
+            if (arr[y][x].color == color){
+                if (arr[y][x].selected == false){
+                    change = false;
+                }
+            }
+
+        }
+    }
+
+    if (change){
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+
+                if (arr[y][x].color == color){
+                    arr[y][x].correct = true;
+                }
+
+            }
+        }
+    }
 }
