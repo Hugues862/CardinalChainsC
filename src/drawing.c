@@ -1,6 +1,12 @@
 #include "test.h"
 
 
+void drawRect(int x, int y, int side, int margin, Color color){
+
+    DrawRectangle(margin + (side * x), margin + (side * y), side, side, color);
+
+}
+
 void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 
     int sqrSide = 50;
@@ -52,7 +58,7 @@ void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 
                 }
             }
-            
+
             char str[2];
             sprintf(str, "%d", arr[y][x].value);
             DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
@@ -61,11 +67,5 @@ void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
     }
 
     EndDrawing();
-
-}
-
-void drawRect(int x, int y, int side, int margin, Color color){
-
-    DrawRectangle(margin + (side * x), margin + (side * y), side, side, color);
 
 }

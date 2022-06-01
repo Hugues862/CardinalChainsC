@@ -27,12 +27,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+// /* All .c files and functions in test.h
+
 typedef struct gameCell
 {
     // int position[2];
     int value; // Value of the cell (Number appearing on it)
     int color; // Value of the color (0 -> Red, 1 -> Blue, ect)
     // int path; // Value of path (0 -> start, 1 -> nextCorrect)
+    // bool hover;
     bool selected; // Change color when true
     bool correct;
     
@@ -297,7 +300,7 @@ void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
     EndDrawing();
 
 }
-
+// */
 
 int main() 
 {
