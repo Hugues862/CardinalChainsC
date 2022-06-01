@@ -305,14 +305,14 @@ void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 int main() 
 {
     // Initialization
-    //--------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------
     const int screenWidth = 1000;
     const int screenHeight = 1000;
 
     Cell** arr = NULL;
     
     int arrWidth = 0, arrHeight = 0;
-    genLevel(1, &arr, &arrWidth, &arrHeight);
+    genLevel(1, arr, &arrWidth, &arrHeight);
 
     InitWindow(screenWidth, screenHeight, "raylib");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -339,6 +339,20 @@ int main()
         free(arr[i]);
     }
     free(arr);
+
+
+    // Cell** arr2 = NULL;
+    // Cell newCell;
+    // newCell.value = 40;
+
+    // arr2 = malloc(5 * sizeof(Cell*));
+    // for (int i = 0; i < 5; i++){
+    //     arr2[i] = malloc(5 * sizeof(Cell));
+    // }
+
+    // arr2[0][0] = newCell;
+
+    // printf("%d", arr2[0][0].value);
 
     return 0;
 }

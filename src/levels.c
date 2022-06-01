@@ -9,30 +9,30 @@ Cell createNewCell(int value, int color){
     newCell.color = color;
     // newCell.path = path;
     // newCell.hover = false;
-    newCell.selected = false; // IDEE DE GUIGUI (DON'T FORGET TO DO)
+    newCell.selected = false;
     newCell.correct = false;
 
     return newCell;
 
 }
 
-void randomArray(int*** arr){
+void randomArray(int arr[11][11]){
 
     int newArr[11][11] = {{0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-                                {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+                            {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                            {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
             
     for(int i = 0; i < 11; i++){
         for (int j = 0; j < 11; j++){
-            *arr[i][j] = newArr[i][j];
+            arr[i][j] = newArr[i][j];
         }
     }
            
@@ -40,7 +40,7 @@ void randomArray(int*** arr){
 
 int valueToColor(int value){
 
-    int color = (value - (value % 10)) / 10;
+    int color = floor(value / 10);
     return color;
 
 }
@@ -52,7 +52,7 @@ int valueToNum(int value){
 
 }
 
-void baseArray(int level, int*** arr){
+void baseArray(int level, int arr[11][11]){
 
     switch(level){
 
@@ -73,7 +73,7 @@ void baseArray(int level, int*** arr){
             
             for(int i = 0; i < 11; i++){
                 for (int j = 0; j < 11; j++){
-                    *arr[i][j] = newArr1[i][j];
+                    arr[i][j] = newArr1[i][j];
                 }
             }
             // memcpy(arr, newArr1, sizeof(newArr1));
@@ -96,7 +96,7 @@ void baseArray(int level, int*** arr){
 
             for(int i = 0; i < 11; i++){
                 for (int j = 0; j < 11; j++){
-                    *arr[i][j] = newArr2[i][j];
+                    arr[i][j] = newArr2[i][j];
                 }
             }
             // memcpy(arr, newArr2, sizeof(newArr2));
@@ -109,37 +109,29 @@ void baseArray(int level, int*** arr){
 
 }
 
-void genLevel(int level, Cell*** arr, int* width, int* height){
+void genLevel(int level, Cell** arr, int* width, int* height){
 
-    int** base;
+    int base[11][11];
+    // Cell newCell;
+    // newCell.value = 100;
+    baseArray(level, base);
 
-    base = (int**)malloc(11 * sizeof(int*));
-
-    for (int i = 0; i < 11; i++) {
-        base[i] = (int*)malloc(11 * sizeof(int));
-    }
-
-    baseArray(level, &base);
-
-    *width = base[11][0];
-    *height = base[11][11];
+    *width = base[10][0];
+    *height = base[10][10];
     
-    *arr = (Cell**)malloc(*height * sizeof(Cell*));
+    arr = malloc(*height * sizeof(Cell*));
     
     for (int i = 0; i < *height; i++){
-        *arr[i] = (Cell*)malloc(*width * sizeof(Cell));
+        arr[i] = malloc(*width * sizeof(Cell));
     }
 
     for (int y = 0; y < *height; y++){
         for (int x = 0; x < *width; x++){
-            *arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
+            arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
+            // arr[y][x] = newCell;
+            printf("%d\n", arr[y][x].value);
         }
     }
-
-    for (int i = 0; i < 11; i++) {
-        free(base[i]);
-    }
-    free(base);
 
 }
 

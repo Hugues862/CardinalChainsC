@@ -7,7 +7,7 @@ void drawRect(int x, int y, int side, int margin, Color color){
 
 }
 
-void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
+void drawLevel(Cell** arr, int arrWidth, int arrHeight){
 
     int sqrSide = 50;
     
@@ -20,10 +20,10 @@ void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 
     ClearBackground(RAYWHITE);
 
-    for (int y = 0; y < sizeHeight; y++){
-        for (int x = 0; x < sizeWidth; x++){
+    for (int y = 0; y < arrHeight; y++){
+        for (int x = 0; x < arrWidth; x++){
 
-            if (!arr[y][x].correct){
+            if (arr[y][x].correct == false){
                 sqrColor = getColor(arr[y][x].color);
             }
             else{

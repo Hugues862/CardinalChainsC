@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct gameCell
 {
@@ -26,9 +27,9 @@ int valueToColor(int value);
 int valueToNum(int value);
 Color getColor(int colorCode);
 
-void randomArray(int*** arr);
-void baseArray(int level, int*** arr); // work in progress do not touch
-void genLevel(int level, Cell*** arr, int* width, int* height);
+void randomArray(int arr[11][11]);
+void baseArray(int level, int arr[11][11]); // work in progress do not touch
+void genLevel(int level, Cell** arr, int* width, int* height);
 bool conditions(int currX, int currY, int nextX, int nextY);
 void checkWin(int color);
 
@@ -43,7 +44,7 @@ bool isHover(int x, int y, int size, int margin);
 
 // #pragma region Drawing Handling
 
-void drawLevel(Cell** arr, int sizeWidth, int sizeHeight);
+void drawLevel(Cell** arr, int arrWidth, int arrHeight);
 void drawRect(int x, int y, int side, int margin, Color color);
 
 // #pragma endregion
