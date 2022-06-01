@@ -16,13 +16,25 @@ Cell createNewCell(int value, int color){
 
 }
 
-int** randomArray(){
+void randomArray(int*** arr){
 
-    int array[3][3] = {{0, 1, 2},
-                       {1, 1, -1},
-                       {1, 1, -1}};
-
-    return array;
+    int newArr1[11][11] = {{0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+            
+    for(int i = 0; i < 11; i++){
+        for (int j = 0; j < 11; j++){
+            *arr[i][j] = newArr1[i][j];
+        }
+    } 
 }
 
 int valueToColor(int value){
@@ -39,67 +51,91 @@ int valueToNum(int value){
 
 }
 
-void baseArray(int level, int** arr){
+void baseArray(int level, int*** arr){
 
     switch(level){
 
         case 1:
-            arr = {{0, 1, 2},
-                  {1, 1, -1},
-                  {1, 1, -1}};
+            int newArr1[11][11] = {{0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+            
+            for(int i = 0; i < 11; i++){
+                for (int j = 0; j < 11; j++){
+                    *arr[i][j] = newArr1[i][j];
+                }
+            }
+            // memcpy(arr, newArr1, sizeof(newArr1));
             break;
 
         case 2:
-            int array2[3][3] = {{2, 2, 3},
-                                  {1, 0, 3},
-                                  {1, 1, -1}};
-            break;
-        
-        case 3:
-            int array3[4][4] = {{2, 2, 1, 0},
-                               {2, 2, 2, 12},
-                               {3, 5, 11, 11},
-                               {4, 4, 11, 10}};
+            int newArr2[11][11] = {{2, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {1, 0, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {1, 1, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+
+            for(int i = 0; i < 11; i++){
+                for (int j = 0; j < 11; j++){
+                    *arr[i][j] = newArr2[i][j];
+                }
+            }
+            // memcpy(arr, newArr2, sizeof(newArr2));
             break;
 
-        case 4:
-            int array4[4][4] = {{1, 1, 11, 11},
-                               {2, 0, 10, 12},
-                               {2, 2, 12, 12},
-                               {3, 3, 13, 13}};
-            break;
 
         default:
-            arr = randomArray();
+            randomArray(&arr);
     }
-
 }
 
-Cell** level(int level){
+int* level(int level, Cell*** arr){
 
-    int** base = malloc (11 * sizeof(int*));
-    for (int i = 0; i < 11; i++){
-        base[i] = malloc(11 * sizeof(int));
+    int** base;
+
+    base = (int**)malloc(11 * sizeof(int*));
+
+    for (int i = 0; i < 11; i++) {
+        base[i] = (int*)malloc(11 * sizeof(int));
     }
 
-    baseLevel(level, &base);
+    baseArray(level, &base);
 
-    int widthSize = sizeof(base[0]) / sizeof(int);
-    int heightSize = sizeof(base) / widthSize;
+    int width = base[11][0], height = base[11][11];
+    int size[2] = {width, height};
+
+    *arr = (Cell**)malloc(height * sizeof(Cell*));
     
-
-    Cell** lvl = malloc(heightSize * widthSize * sizeof(Cell));
-    for (int i = 0; i < heightSize; i++){
-        lvl[i] = malloc(widthSize * sizeof(Cell));
+    for (int i = 0; i < height; i++){
+        *arr[i] = (Cell*)malloc(width * sizeof(Cell));
     }
 
-    for (int y = 0; y < heightSize; y++){
-        for (int x = 0; x < widthSize; x++){
-            lvl[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+            *arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
         }
     }
 
-    return lvl;
+    for (int i = 0; i < 11; i++) {
+        free(base[i]);
+    }
+    free(base);
+
+    return size;
 }
 
 char* getText(int valueCode){

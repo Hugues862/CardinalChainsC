@@ -11,7 +11,10 @@
 			"blocks.h": "c",
 			"stdio.h": "c",
 			"*.m": "c",
-			"test.h": "c"
+			"test.h": "c",
+			"*.tcc": "c",
+			"system_error": "c",
+			"functional": "c"
 		}
 	}
 }

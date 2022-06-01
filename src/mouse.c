@@ -15,9 +15,8 @@ int* hoverOn(int size, int margin){
 bool isHover(int x, int y, int size, int margin){
 
     int pos[2] = {x, y};
-    int mousePos[2] = hoverOn(size, margin);
+    int* mousePos = hoverOn(size, margin);
 
     return pos == mousePos;
 
 }
-

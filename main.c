@@ -20,8 +20,12 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+// #include "test.h"
+
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct gameCell
 {
@@ -41,6 +45,7 @@ Cell createNewCell(int value, int color){
     newCell.value = value;
     newCell.color = color;
     // newCell.path = path;
+    // newCell.hover = false;
     newCell.selected = false; // IDEE DE GUIGUI (DON'T FORGET TO DO)
     newCell.correct = false;
 
@@ -48,13 +53,26 @@ Cell createNewCell(int value, int color){
 
 }
 
-int** randomArray(){
+void randomArray(int*** arr){
 
-    int array[3][3] = {{0, 1, 2},
-                       {1, 1, -1},
-                       {1, 1, -1}};
-
-    return array;
+    int newArr[11][11] = {{0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+            
+    for(int i = 0; i < 11; i++){
+        for (int j = 0; j < 11; j++){
+            *arr[i][j] = newArr[i][j];
+        }
+    }
+           
 }
 
 int valueToColor(int value){
@@ -71,67 +89,92 @@ int valueToNum(int value){
 
 }
 
-void baseArray(int level, int** &arr){
+void baseArray(int level, int*** arr){
 
     switch(level){
 
         case 1:
-            arr = {{0, 1, 2},
-                                {1, 1, -1},
-                                {1, 1, -1}};
+            int newArr1[11][11] = {{0, 1, 2, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+            
+            for(int i = 0; i < 11; i++){
+                for (int j = 0; j < 11; j++){
+                    *arr[i][j] = newArr1[i][j];
+                }
+            }
+            // memcpy(arr, newArr1, sizeof(newArr1));
             break;
 
         case 2:
-            int array2[3][3] = {{2, 2, 3},
-                                  {1, 0, 3},
-                                  {1, 1, -1}};
-            break;
-        
-        case 3:
-            int array3[4][4] = {{2, 2, 1, 0},
-                               {2, 2, 2, 12},
-                               {3, 5, 11, 11},
-                               {4, 4, 11, 10}};
+            int newArr2[11][11] = {{2, 2, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {1, 0, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {1, 1, 3, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                                   {3, -1, -1, -1, -1, -1, -1, -1, -1, -1, 3}};
+
+            for(int i = 0; i < 11; i++){
+                for (int j = 0; j < 11; j++){
+                    *arr[i][j] = newArr2[i][j];
+                }
+            }
+            // memcpy(arr, newArr2, sizeof(newArr2));
             break;
 
-        case 4:
-            int array4[4][4] = {{1, 1, 11, 11},
-                               {2, 0, 10, 12},
-                               {2, 2, 12, 12},
-                               {3, 3, 13, 13}};
-            break;
 
         default:
-            arr = randomArray();
+            randomArray(&arr);
     }
 
 }
 
-Cell** level(int level){
+int* level(int level, Cell*** arr){
 
-    int** base = malloc (11 * sizeof(int*));
-    for (int i = 0; i < 11; i++){
-        base[i] = malloc(11 * sizeof(int));
+    int** base;
+
+    base = (int**)malloc(11 * sizeof(int*));
+
+    for (int i = 0; i < 11; i++) {
+        base[i] = (int*)malloc(11 * sizeof(int));
     }
 
-    baseLevel(level, &base);
+    baseArray(level, &base);
 
-    int widthSize = sizeof(base[0]) / sizeof(int);
-    int heightSize = sizeof(base) / widthSize;
+    int width = base[11][0], height = base[11][11];
+    int size[2] = {width, height};
+
+    *arr = (Cell**)malloc(height * sizeof(Cell*));
     
-
-    Cell** lvl = malloc(heightSize * widthSize * sizeof(Cell));
-    for (int i = 0; i < heightSize; i++){
-        lvl[i] = malloc(widthSize * sizeof(Cell));
+    for (int i = 0; i < height; i++){
+        *arr[i] = (Cell*)malloc(width * sizeof(Cell));
     }
 
-    for (int y = 0; y < heightSize; y++){
-        for (int x = 0; x < widthSize; x++){
-            lvl[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+            *arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
         }
     }
 
-    return lvl;
+    for (int i = 0; i < 11; i++) {
+        free(base[i]);
+    }
+    free(base);
+
+    return size;
 }
 
 char* getText(int valueCode){
@@ -155,11 +198,53 @@ Color getColor(int colorCode){
 
 }
 
+bool conditions(int* curr, int* next){
+
+    // Will check if the 
+    return true;
+
+}
+
+void checkWin(int color){
+
+    // Will check if every cell of X color is selected, if yes turn Correct into True
+
+}
+
+
+int* hoverOn(int size, int margin){
+
+    int posX, posY;
+
+    posX = ((GetMouseX() - margin) - ((GetMouseX() - margin) % size)) / size;
+    posY = ((GetMouseY() - margin) - ((GetMouseY() - margin) % size)) / size;
+
+    int* pos[2] = {posX, posY};
+    return pos;
+}
+
+bool isHover(int x, int y, int size, int margin){
+
+    int pos[2] = {x, y};
+    int* mousePos = hoverOn(size, margin);
+
+    return pos == mousePos;
+
+}
+
+
+void drawRect(int x, int y, int side, int margin, Color color){
+
+    DrawRectangle(margin + (side * x), margin + (side * y), side, side, color);
+
+}
+
 void drawLevel(Cell** arr){
 
-    int sqrWidth = 50, sqrHeight = 50;
+    int sqrSide = 50;
     int sizeWidth = sizeof(arr[0]) / sizeof(Cell);
     int sizeHeight = sizeof(arr) / sizeWidth;
+    int margin = 100; // Problem with hover (negative values)
     
     Color selectColor = {150, 255, 30, 0.5};
     Color sqrColor;
@@ -178,14 +263,34 @@ void drawLevel(Cell** arr){
                 sqrColor = YELLOW;
             }
 
-            DrawRectangle(100 + (sqrWidth * x), 100 + (sqrHeight * y), sqrWidth, sqrHeight, sqrColor);
+            drawRect(x, y, sqrSide, margin, sqrColor);
 
-            if (arr[y][x].selected){
-                DrawRectangle(100 + (sqrWidth * x), 100 + (sqrHeight * y), sqrWidth, sqrHeight, selectColor);
+            if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
+                drawRect(x, y, sqrSide, margin, selectColor);
+                
+                int prev[2] = {x, y};
+
+                while(IsMouseButtonDown(1)){ // Click & Hold to select
+
+                    int* pos = hoverOn(sqrSide, margin);
+                    if (conditions(prev, pos)){
+                        arr[pos[1]][pos[0]].selected = true;
+                        drawRect(pos[0], pos[1], sqrSide, margin, selectColor);
+                        memcpy(prev, pos, sizeof(pos));
+                    }
+                }
+
+                if (IsMouseButtonReleased(1)){
+
+                    checkWin(arr[y][x].color);
+
+                }
             }
 
+
+
             // (originX, originY, lenX, lenY, Color)
-            DrawText(getText(arr[y][x].value), 100 + (sqrWidth * x) + 15, 100 + (sqrHeight * y) + 15, 14.5, BLACK);
+            DrawText(getText(arr[y][x].value), margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
 
         }
     }
@@ -202,7 +307,9 @@ int main()
     const int screenWidth = 1000;
     const int screenHeight = 1000;
 
-    Cell** arr = level(1);
+    Cell** arr = NULL;
+    
+    int* size = level(1, &arr);
 
     InitWindow(screenWidth, screenHeight, "raylib");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -224,6 +331,11 @@ int main()
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
+
+    for (int i = 0; i < size[1]; i++){
+        free(arr[i]);
+    }
+    free(arr);
 
     return 0;
 }

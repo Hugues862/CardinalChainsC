@@ -1,5 +1,10 @@
-#include <stdbool.h>
+
 #include "raylib.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct gameCell
 {
@@ -22,15 +27,20 @@ int valueToNum(int value);
 char* getText(int valueCode);
 Color getColor(int colorCode);
 
-int** randomArray();
-void baseArray(int level, int** arr); // work in progress do not touch
-Cell** level(int level);
+void randomArray(int*** arr);
+void baseArray(int level, int*** arr); // work in progress do not touch
+int* level(int level, Cell*** arr);
 bool condition(int* curr, int* next);
 void checkWin(int color);
 
-
 // #pragma endregion
 
+// #pragma region Mouse
+
+int* hoverOn(int size, int margin);
+bool isHover(int x, int y, int size, int margin);
+
+// #pragma endregion
 
 // #pragma region Drawing Handling
 

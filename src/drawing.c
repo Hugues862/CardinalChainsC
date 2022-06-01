@@ -1,5 +1,6 @@
 #include "test.h"
 
+
 void drawLevel(Cell** arr){
 
     int sqrSide = 50;
@@ -26,14 +27,14 @@ void drawLevel(Cell** arr){
 
             drawRect(x, y, sqrSide, margin, sqrColor);
 
-            if ((arr[y][x].value == 0 && isHover(x, y, sqrSide)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
+            if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
                 drawRect(x, y, sqrSide, margin, selectColor);
                 
                 int prev[2] = {x, y};
 
                 while(IsMouseButtonDown(1)){ // Click & Hold to select
 
-                    int pos[2] = hoverOn(sqrSide, margin);
+                    int* pos = hoverOn(sqrSide, margin);
                     if (conditions(prev, pos)){
                         arr[pos[1]][pos[0]].selected = true;
                         drawRect(pos[0], pos[1], sqrSide, margin, selectColor);
@@ -65,5 +66,3 @@ void drawRect(int x, int y, int side, int margin, Color color){
     DrawRectangle(margin + (side * x), margin + (side * y), side, side, color);
 
 }
-
-
