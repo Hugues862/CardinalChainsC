@@ -99,7 +99,7 @@ void baseArray(int level, int*** arr){
 
 
         default:
-            randomArray(&arr);
+            randomArray(arr);
     }
 }
 
@@ -116,7 +116,10 @@ int* level(int level, Cell*** arr){
     baseArray(level, &base);
 
     int width = base[11][0], height = base[11][11];
-    int size[2] = {width, height};
+    
+    int* size = malloc(2 * sizeof(int));
+    size[0] = width;
+    size[1] = height;
 
     *arr = (Cell**)malloc(height * sizeof(Cell*));
     
