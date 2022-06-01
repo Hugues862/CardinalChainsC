@@ -20,14 +20,14 @@
 ********************************************************************************************/
 
 #include "raylib.h"
-// #include "test.h"
+#include "test.h"
 
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-// /* All .c files and functions in test.h
+/* All .c files and functions in test.h
 
 typedef struct gameCell
 {
