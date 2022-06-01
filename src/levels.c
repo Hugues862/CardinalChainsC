@@ -103,7 +103,7 @@ void baseArray(int level, int*** arr){
     }
 }
 
-int* level(int level, Cell*** arr){
+void genLevel(int level, Cell*** arr, int* width, int* height){
 
     int** base;
 
@@ -115,20 +115,17 @@ int* level(int level, Cell*** arr){
 
     baseArray(level, &base);
 
-    int width = base[11][0], height = base[11][11];
+    *width = base[11][0];
+    *height = base[11][11];
     
-    int* size = malloc(2 * sizeof(int));
-    size[0] = width;
-    size[1] = height;
-
-    *arr = (Cell**)malloc(height * sizeof(Cell*));
+    *arr = (Cell**)malloc(*height * sizeof(Cell*));
     
-    for (int i = 0; i < height; i++){
-        *arr[i] = (Cell*)malloc(width * sizeof(Cell));
+    for (int i = 0; i < *height; i++){
+        *arr[i] = (Cell*)malloc(*width * sizeof(Cell));
     }
 
-    for (int y = 0; y < height; y++){
-        for (int x = 0; x < width; x++){
+    for (int y = 0; y < *height; y++){
+        for (int x = 0; x < *width; x++){
             *arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
         }
     }
@@ -138,15 +135,6 @@ int* level(int level, Cell*** arr){
     }
     free(base);
 
-    return size;
-}
-
-char* getText(int valueCode){
-
-    char str[2];
-    sprintf(str, "%d", valueCode);
-
-    return *str;
 }
 
 Color getColor(int colorCode){
@@ -160,9 +148,10 @@ Color getColor(int colorCode){
             return BLUE;
     }
 
+    return WHITE;
 }
 
-bool conditions(int* curr, int* next){
+bool conditions(int currX, int currY, int nextX, int nextY){
 
     // Will check if the 
     return true;

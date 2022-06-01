@@ -146,7 +146,7 @@ void baseArray(int level, int*** arr){
 
 }
 
-int* genLevel(int level, Cell*** arr){
+void genLevel(int level, Cell*** arr, int* width, int* height){
 
     int** base;
 
@@ -158,20 +158,17 @@ int* genLevel(int level, Cell*** arr){
 
     baseArray(level, &base);
 
-    int width = base[11][0], height = base[11][11];
+    *width = base[11][0];
+    *height = base[11][11];
     
-    int* size = malloc(2 * sizeof(int));
-    size[0] = width;
-    size[1] = height;
-
-    *arr = (Cell**)malloc(height * sizeof(Cell*));
+    *arr = (Cell**)malloc(*height * sizeof(Cell*));
     
-    for (int i = 0; i < height; i++){
-        *arr[i] = (Cell*)malloc(width * sizeof(Cell));
+    for (int i = 0; i < *height; i++){
+        *arr[i] = (Cell*)malloc(*width * sizeof(Cell));
     }
 
-    for (int y = 0; y < height; y++){
-        for (int x = 0; x < width; x++){
+    for (int y = 0; y < *height; y++){
+        for (int x = 0; x < *width; x++){
             *arr[y][x] = createNewCell(valueToNum(base[y][x]), valueToColor(base[y][x]));
         }
     }
@@ -181,15 +178,6 @@ int* genLevel(int level, Cell*** arr){
     }
     free(base);
 
-    return size;
-}
-
-char* getText(int valueCode){
-
-    char str[2];
-    sprintf(str, "%d", valueCode);
-
-    return *str;
 }
 
 Color getColor(int colorCode){
@@ -203,9 +191,10 @@ Color getColor(int colorCode){
             return BLUE;
     }
 
+    return WHITE;
 }
 
-bool conditions(int* curr, int* next){
+bool conditions(int currX, int currY, int nextX, int nextY){
 
     // Will check if the 
     return true;
@@ -219,23 +208,23 @@ void checkWin(int color){
 }
 
 
-int* hoverOn(int size, int margin){
+void hoverOn(int* x, int* y, int size, int margin){
 
     int posX, posY;
 
     posX = ((GetMouseX() - margin) - ((GetMouseX() - margin) % size)) / size;
     posY = ((GetMouseY() - margin) - ((GetMouseY() - margin) % size)) / size;
 
-    int* pos[2] = {posX, posY};
-    return pos;
+    *x = posX;
+    *y = posY;
 }
 
 bool isHover(int x, int y, int size, int margin){
 
-    int pos[2] = {x, y};
-    int* mousePos = hoverOn(size, margin);
+    int posX = 0, posY = 0;
+    hoverOn(&posX, &posY, size, margin);
 
-    return pos == mousePos;
+    return posX == x && posY == y;
 
 }
 
@@ -246,11 +235,10 @@ void drawRect(int x, int y, int side, int margin, Color color){
 
 }
 
-void drawLevel(Cell** arr){
+void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 
     int sqrSide = 50;
-    int sizeWidth = sizeof(arr[0]) / sizeof(Cell);
-    int sizeHeight = sizeof(arr) / sizeWidth;
+    
     int margin = 100; // Problem with hover (negative values)
     
     Color selectColor = {150, 255, 30, 0.5};
@@ -271,19 +259,24 @@ void drawLevel(Cell** arr){
             }
 
             drawRect(x, y, sqrSide, margin, sqrColor);
+            // (originX, originY, lenX, lenY, Color)
 
             if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
                 drawRect(x, y, sqrSide, margin, selectColor);
                 
-                int prev[2] = {x, y};
+                int prevX = x, prevY = y;
 
                 while(IsMouseButtonDown(1)){ // Click & Hold to select
 
-                    int* pos = hoverOn(sqrSide, margin);
-                    if (conditions(prev, pos)){
-                        arr[pos[1]][pos[0]].selected = true;
-                        drawRect(pos[0], pos[1], sqrSide, margin, selectColor);
-                        memcpy(prev, pos, sizeof(pos));
+                    int posX = 0, posY = 0;
+                    hoverOn(&posX, &posY, sqrSide, margin);
+
+                    if (conditions(prevX, prevY, posX, posY)){
+                        arr[posY][posX].selected = true;
+                        drawRect(posX, posY, sqrSide, margin, selectColor);
+                        
+                        prevX = posX;
+                        prevY = posY;
                     }
                 }
 
@@ -294,10 +287,9 @@ void drawLevel(Cell** arr){
                 }
             }
 
-
-
-            // (originX, originY, lenX, lenY, Color)
-            DrawText(getText(arr[y][x].value), margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
+            char str[2];
+            sprintf(str, "%d", arr[y][x].value);
+            DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
 
         }
     }
@@ -316,7 +308,8 @@ int main()
 
     Cell** arr = NULL;
     
-    int* size = genLevel(1, &arr);
+    int arrWidth = 0, arrHeight = 0;
+    genLevel(1, &arr, &arrWidth, &arrHeight);
 
     InitWindow(screenWidth, screenHeight, "raylib");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -329,7 +322,7 @@ int main()
         // Draw
         //----------------------------------------------------------------------------------
         
-        drawLevel(arr);
+        drawLevel(arr, arrWidth, arrHeight);
         
         //----------------------------------------------------------------------------------
     }
@@ -339,15 +332,10 @@ int main()
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
-    for (int i = 0; i < size[1]; i++){
+    for (int i = 0; i < arrHeight; i++){
         free(arr[i]);
     }
     free(arr);
-
-    for (int i = 0; i < 2; i++){
-        free(size[i]);
-    }
-    free(size);
 
     return 0;
 }

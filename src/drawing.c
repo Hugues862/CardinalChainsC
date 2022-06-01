@@ -1,11 +1,10 @@
 #include "test.h"
 
 
-void drawLevel(Cell** arr){
+void drawLevel(Cell** arr, int sizeWidth, int sizeHeight){
 
     int sqrSide = 50;
-    int sizeWidth = sizeof(arr[0]) / sizeof(Cell);
-    int sizeHeight = sizeof(arr) / sizeWidth;
+    
     int margin = 100; // Problem with hover (negative values)
     
     Color selectColor = {150, 255, 30, 0.5};
@@ -26,19 +25,24 @@ void drawLevel(Cell** arr){
             }
 
             drawRect(x, y, sqrSide, margin, sqrColor);
+            // (originX, originY, lenX, lenY, Color)
 
             if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
                 drawRect(x, y, sqrSide, margin, selectColor);
                 
-                int prev[2] = {x, y};
+                int prevX = x, prevY = y;
 
                 while(IsMouseButtonDown(1)){ // Click & Hold to select
 
-                    int* pos = hoverOn(sqrSide, margin);
-                    if (conditions(prev, pos)){
-                        arr[pos[1]][pos[0]].selected = true;
-                        drawRect(pos[0], pos[1], sqrSide, margin, selectColor);
-                        memcpy(prev, pos, sizeof(pos));
+                    int posX = 0, posY = 0;
+                    hoverOn(&posX, &posY, sqrSide, margin);
+
+                    if (conditions(prevX, prevY, posX, posY)){
+                        arr[posY][posX].selected = true;
+                        drawRect(posX, posY, sqrSide, margin, selectColor);
+                        
+                        prevX = posX;
+                        prevY = posY;
                     }
                 }
 
@@ -48,11 +52,10 @@ void drawLevel(Cell** arr){
 
                 }
             }
-
-
-
-            // (originX, originY, lenX, lenY, Color)
-            DrawText(getText(arr[y][x].value), margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
+            
+            char str[2];
+            sprintf(str, "%d", arr[y][x].value);
+            DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
 
         }
     }
