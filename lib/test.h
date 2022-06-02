@@ -28,6 +28,7 @@ Cell createNewCell(int value, int color);
 Color getColor(int colorCode);
 
 void setLevel(Cell arr[11][11], int level);
+void getLevelSize(int level, int* width, int* height);
 // void randomArray(int arr[11][11]);
 // void baseArray(int level, int arr[11][11]); // work in progress do not touch
 // void getBase(int level, int base[11][11], int* width, int* height);
@@ -41,12 +42,13 @@ void checkWin(Cell** arr, int color, int width, int height);
 
 void hoverOn(int* x, int* y, int size, int margin);
 bool isHover(int x, int y, int size, int margin);
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int sqrSide, int margin, Color selectColor);
 
 // #pragma endregion
 
 // #pragma region Drawing Handling
 
-void drawLevel(Cell arr[11][11]);
+void drawLevel(Cell arr[11][11], int x, int y, int sqrSide, int margin, Color selectColor, int width, int height);
 void drawRect(int x, int y, int side, int margin, Color color);
 
 // #pragma endregion

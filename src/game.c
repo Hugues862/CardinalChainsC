@@ -2,6 +2,13 @@
 
 void game(int level){
 
+    const int sqrSide = 50;
+    const int margin = 0;
+    const Color selectColor = {150, 255, 30, 0.5};
+
+    int levelWidth, levelHeight;
+    getLevelSize(level, &levelWidth, &levelHeight);
+
     bool gameState = true;
     Cell arr[11][11];
 
@@ -11,8 +18,16 @@ void game(int level){
         }
     }
 
+    int x, y;
+
     setLevel(arr, level);
-    drawLevel(arr);
+    while(game){
+        
+        hoverOn(&x, &y, sqrSide, margin);
+        drawLevel(arr, x, y, sqrSide, margin, selectColor, levelWidth, levelHeight);
+        
+
+    }
 
 
 }

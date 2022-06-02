@@ -45,6 +45,24 @@ void setLevel(Cell arr[11][11], int level){
 
 }
 
+void getLevelSize(int level, int* width, int* height){
+
+    switch(level){
+
+        case 1:
+            *width = 3;
+            *height = 3;
+            break;
+        
+        case 2:
+            *width = 3;
+            *height = 3;
+            break;
+
+    }
+
+}
+
 /*
 // void randomArray(int arr[11][11]){
 
@@ -195,8 +213,8 @@ void checkWin(Cell** arr, int color, int width, int height){
 
     bool change = true;
 
-    for (int y = 0; y < height; y++){
-        for (int x = 0; x < width; x++){
+    for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
+        for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
 
             if (arr[y][x].color == color){
                 if (arr[y][x].selected == false){
@@ -208,8 +226,8 @@ void checkWin(Cell** arr, int color, int width, int height){
     }
 
     if (change){
-        for (int y = 0; y < height; y++){
-            for (int x = 0; x < width; x++){
+        for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
+            for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
 
                 if (arr[y][x].color == color){
                     arr[y][x].correct = true;
