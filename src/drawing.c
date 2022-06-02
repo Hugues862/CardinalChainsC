@@ -7,11 +7,11 @@ void drawRect(int x, int y, int side, int margin, Color color){
 
 }
 
-void drawLevel(Cell** arr, int arrWidth, int arrHeight){
+void drawLevel(Cell arr[11][11]){
 
     int sqrSide = 50;
     
-    int margin = 100; // Problem with hover (negative values)
+    int margin = 0; // Problem with hover (negative values)
     
     Color selectColor = {150, 255, 30, 0.5};
     Color sqrColor;
@@ -20,21 +20,30 @@ void drawLevel(Cell** arr, int arrWidth, int arrHeight){
 
     ClearBackground(RAYWHITE);
 
-    for (int y = 0; y < arrHeight; y++){
-        for (int x = 0; x < arrWidth; x++){
+    for (int y = 0; y < 11; y++){
+        for (int x = 0; x < 11; x++){
 
-            if (arr[y][x].correct == false){
+            if (arr[y][x].value == -1){
+                sqrColor = WHITE;
+            }
+            else if (arr[y][x].correct == false){
                 sqrColor = getColor(arr[y][x].color);
             }
             else{
                 sqrColor = YELLOW;
             }
 
+
             drawRect(x, y, sqrSide, margin, sqrColor);
+            char str[2];
+            sprintf(str, "%d", arr[y][x].value);
+            DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
+
             // (originX, originY, lenX, lenY, Color)
 
-            if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) || (!arr[y][x].correct)) { // Can only click & hover on first cell
+            if ((arr[y][x].value == 0 && isHover(x, y, sqrSide, margin)) && (!arr[y][x].correct)) { // Can only click & hover on first cell
                 drawRect(x, y, sqrSide, margin, selectColor);
+                
                 
                 int prevX = x, prevY = y;
 
@@ -42,26 +51,29 @@ void drawLevel(Cell** arr, int arrWidth, int arrHeight){
 
                     int posX = 0, posY = 0;
                     hoverOn(&posX, &posY, sqrSide, margin);
+                    
+                    if (posX == prevX && posY == prevY){
+                        continue;
+                    }
 
-                    if (conditions(arr, prevX, prevY, posX, posY)){
+                    else if (conditions(arr, prevX, prevY, posX, posY)){
                         arr[posY][posX].selected = true;
                         drawRect(posX, posY, sqrSide, margin, selectColor);
                         
                         prevX = posX;
                         prevY = posY;
                     }
-                }
 
-                if (IsMouseButtonReleased(1)){
+                    if (IsMouseButtonReleased(1)){
 
-                    checkWin(arr, arr[y][x].color, arrWidth, arrHeight);
+                        checkWin(arr, arr[y][x].color, 11, 11);
+                        break;
 
+                    }
                 }
             }
 
-            char str[2];
-            sprintf(str, "%d", arr[y][x].value);
-            DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
+            
 
         }
     }

@@ -23,13 +23,15 @@ typedef struct gameCell
 
 Cell createNewCell(int value, int color);
 
-int valueToColor(int value);
-int valueToNum(int value);
+// int valueToColor(int value);
+// int valueToNum(int value);
 Color getColor(int colorCode);
 
-void randomArray(int arr[11][11]);
-void baseArray(int level, int arr[11][11]); // work in progress do not touch
-void genLevel(int level, Cell** arr, int* width, int* height);
+void setLevel(Cell arr[11][11], int level);
+// void randomArray(int arr[11][11]);
+// void baseArray(int level, int arr[11][11]); // work in progress do not touch
+// void getBase(int level, int base[11][11], int* width, int* height);
+// void genLevel(Cell** arr, int base[11][11], int width, int height);
 bool conditions(Cell** arr, int currX, int currY, int nextX, int nextY);
 void checkWin(Cell** arr, int color, int width, int height);
 
@@ -44,7 +46,9 @@ bool isHover(int x, int y, int size, int margin);
 
 // #pragma region Drawing Handling
 
-void drawLevel(Cell** arr, int arrWidth, int arrHeight);
+void drawLevel(Cell arr[11][11]);
 void drawRect(int x, int y, int side, int margin, Color color);
 
 // #pragma endregion
+
+void game(int level);

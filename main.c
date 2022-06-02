@@ -306,13 +306,18 @@ int main()
 {
     // Initialization
     // --------------------------------------------------------------------------------------
-    const int screenWidth = 1000;
-    const int screenHeight = 1000;
-
-    Cell** arr = NULL;
+    const int screenWidth = 550;
+    const int screenHeight = 550;
     
-    int arrWidth = 0, arrHeight = 0;
-    genLevel(1, arr, &arrWidth, &arrHeight);
+    int windowState = 1;
+    int level = 1;
+
+    // int base[11][11];
+    // int arrWidth = 0, arrHeight = 0;
+
+    // getBase(1, base, &arrWidth, &arrHeight);
+    
+    // genLevel(arr, base, arrWidth, arrHeight);
 
     InitWindow(screenWidth, screenHeight, "raylib");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
@@ -322,12 +327,15 @@ int main()
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
-        // Draw
-        //----------------------------------------------------------------------------------
-        
-        drawLevel(arr, arrWidth, arrHeight);
-        
-        //----------------------------------------------------------------------------------
+        switch (windowState){
+
+            // case 0: // Menu
+            //     menu(&level);
+            //     break;
+            case 1: // Draw Level
+                game(level);
+
+        }
     }
 
     // De-Initialization
@@ -335,24 +343,6 @@ int main()
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
-    for (int i = 0; i < arrHeight; i++){
-        free(arr[i]);
-    }
-    free(arr);
-
-
-    // Cell** arr2 = NULL;
-    // Cell newCell;
-    // newCell.value = 40;
-
-    // arr2 = malloc(5 * sizeof(Cell*));
-    // for (int i = 0; i < 5; i++){
-    //     arr2[i] = malloc(5 * sizeof(Cell));
-    // }
-
-    // arr2[0][0] = newCell;
-
-    // printf("%d", arr2[0][0].value);
 
     return 0;
 }
