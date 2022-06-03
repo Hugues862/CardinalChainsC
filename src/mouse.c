@@ -22,17 +22,18 @@ bool isHover(int x, int y){
 
 }
 
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY){
+void hoverClick(Cell* arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY){
 
-    if (conditions(arr, *prevX, *prevY, x, y) && !arr[y][x].correct && !arr[y][x].selected && IsMouseButtonPressed(0)) { // Can only click & hover on first cell
+    if (conditions(*arr, *prevX, *prevY, x, y) && !((*arr)[y][x].correct) && IsMouseButtonDown(0)) {
+        // Can only click & hover on first, neigbours, close value and same color cells
         
-        arr[y][x].selected = true;
-        drawRect(x, y, (Color)selectColor);
+        (*arr)[y][x].selected = true;
 
         bool select = true;
         *prevX = x;
         *prevY = y;
         DrawText("pog", 15, 15, 14.5, BLACK);
+
 
         // while(select){
         //     if (IsMouseButtonPressed(0)){ // Click & select 

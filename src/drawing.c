@@ -19,14 +19,17 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
         for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
 
             if (arr[y][x].value == -1){
-                sqrColor = WHITE;
+                sqrColor = RAYWHITE;
             }
-            else if (arr[y][x].correct == false){
-                sqrColor = getColor(arr[y][x].color);
-            }
-            else{
+            else if (arr[y][x].correct == true){
                 sqrColor = YELLOW;
             }
+            else if (arr[y][x].selected == true){
+                sqrColor = BLUE;
+            }
+            else{
+                sqrColor = getColor(arr[y][x].color);
+            } 
 
             drawRect(x, y, sqrColor);
 
@@ -38,6 +41,11 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
 
         }
     }
+    
+    char* str;
+    if (arr[5][5].selected) {str = "True";}
+    else { str = "False";}
+    DrawText(str, 15 + 15, 15 + 15, 14.5, BLACK);
 
     int hoverX, hoverY;
     hoverOn(&hoverX, &hoverY);
@@ -53,7 +61,7 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
     // }
 
 
-    hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY);
+    hoverClick(&arr, hoverX, hoverY, width, height, prevX, prevY);
 
     EndDrawing();
 

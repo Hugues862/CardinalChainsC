@@ -186,7 +186,7 @@ Color getColor(int colorCode){
         case 1:
             return GREEN;
         case 2:
-            return BLUE;
+            return PURPLE;
     }
 
     return WHITE;
@@ -211,7 +211,7 @@ void checkWin(Cell** arr, int color, int width, int height){
         }
     }
 
-    if (change){
+    if (change == true){
         for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
             for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
 

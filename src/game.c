@@ -16,12 +16,11 @@ void game(int level){
     }
 
     setLevel(arr, level);
-    while(game){
+    
+    while(gameState == true){
         
         drawLevel(arr, levelWidth, levelHeight, &prevX, &prevY);
         
-
     }
-
 
 }

@@ -23,7 +23,6 @@ typedef struct gameCell
 #define screenHeight 550 * 1.5
 #define sqrSide 50 * 1.5 //
 #define margin 0 * 1.5 //
-#define selectColor {150, 255, 30, 0.5}
 
 // #pragma region Cells & Level handling
 
@@ -47,7 +46,7 @@ void checkWin(Cell** arr, int color, int width, int height);
 
 void hoverOn(int* x, int* y);
 bool isHover(int x, int y);
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY);
+void hoverClick(Cell* arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY);
 bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY);
 
 // #pragma endregion
