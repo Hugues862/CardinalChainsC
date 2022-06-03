@@ -38,7 +38,7 @@ void setLevel(Cell arr[11][11], int level){
             arr[6][6] = createNewCell(3, 0);
             arr[5][6] = createNewCell(3, 0);
             arr[4][6] = createNewCell(3, 0);
-            arr[5][4] = createNewCell(2, 0);
+            arr[4][5] = createNewCell(2, 0);
             arr[4][4] = createNewCell(2, 0);
             break;
     }
@@ -192,21 +192,6 @@ Color getColor(int colorCode){
     return WHITE;
 }
 
-bool conditions(Cell** arr, int currX, int currY, int nextX, int nextY){
-
-    // Checks if hovered cell is same color, same value or +1 from previous cell
-
-    if (arr[currY][currX].color == arr[nextY][nextX].color){
-
-        if (arr[currY][currX].value == arr[nextY][nextX].value || arr[currY][currX].value + 1 == arr[nextY][nextX].value){
-            return true;
-        }
-    }
-
-    return false;
-
-}
-
 void checkWin(Cell** arr, int color, int width, int height){
 
     // Will check if every cell of X color is selected, if yes turn Correct into True
@@ -220,6 +205,7 @@ void checkWin(Cell** arr, int color, int width, int height){
                 if (arr[y][x].selected == false){
                     change = false;
                 }
+                arr[y][x].selected = false;
             }
 
         }

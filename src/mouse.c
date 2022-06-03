@@ -1,57 +1,88 @@
 
 #include "test.h"
 
-void hoverOn(int* x, int* y, int size, int margin){
+
+void hoverOn(int* x, int* y){
 
     int posX, posY;
 
-    posX = ((GetMouseX() - margin) - ((GetMouseX() - margin) % size)) / size;
-    posY = ((GetMouseY() - margin) - ((GetMouseY() - margin) % size)) / size;
+    posX = floor((GetMouseX() - margin) / sqrSide);
+    posY = floor((GetMouseY() - margin) / sqrSide);
 
     *x = posX;
     *y = posY;
 }
 
-bool isHover(int x, int y, int size, int margin){
+bool isHover(int x, int y){
 
     int posX = 0, posY = 0;
-    hoverOn(&posX, &posY, size, margin);
+    hoverOn(&posX, &posY);
 
     return posX == x && posY == y;
 
 }
 
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int sqrSide, int margin, Color selectColor){
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY){
 
-    if (arr[y][x].value == 0 && isHover(x, y, sqrSide, margin) && !arr[y][x].correct) { // Can only click & hover on first cell
-        drawRect(x, y, sqrSide, margin, selectColor);
-        printf("test");
-        int prevX = x, prevY = y;
+    if (conditions(arr, *prevX, *prevY, x, y) && !arr[y][x].correct && !arr[y][x].selected && IsMouseButtonPressed(0)) { // Can only click & hover on first cell
+        
+        arr[y][x].selected = true;
+        drawRect(x, y, (Color)selectColor);
 
-        while(IsMouseButtonDown(1)){ // Click & Hold to select
+        bool select = true;
+        *prevX = x;
+        *prevY = y;
+        DrawText("pog", 15, 15, 14.5, BLACK);
 
-            int posX = 0, posY = 0;
-            hoverOn(&posX, &posY, sqrSide, margin);
-            
-            if (posX == prevX && posY == prevY){
-                continue;
-            }
+        // while(select){
+        //     if (IsMouseButtonPressed(0)){ // Click & select 
 
-            else if (conditions(arr, prevX, prevY, posX, posY)){
-                arr[posY][posX].selected = true;
-                drawRect(posX, posY, sqrSide, margin, selectColor);
-                
-                prevX = posX;
-                prevY = posY;
-            }
+        //         DrawText("haha", 15, 15, 14.5, BLACK);
+        //         int posX = 0, posY = 0;
+        //         hoverOn(&posX, &posY, sqrSide, margin);
 
-            if (IsMouseButtonReleased(1)){
+        //         if (!(posX == prevX && posY == prevY) && conditions(arr, prevX, prevY, posX, posY)){
+                    
+        //             arr[posY][posX].selected = true;
+        //             drawRect(posX, posY, sqrSide, margin, selectColor);
+                    
+        //             prevX = posX;
+        //             prevY = posY;
+        //         }
+        //     }
 
-                checkWin(arr, arr[y][x].color, width, height);
-                break;
+        //     if (IsMouseButtonPressed(1)){
 
-            }
-        }
+        //         DrawText("lmao", 15, 15, 14.5, BLACK);
+        //         checkWin(arr, arr[y][x].color, width, height);
+        //         select = false;
+
+        //     }
+        // }
     }
     
+}
+
+bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY){
+
+    // Checks if hovered cell is same color, same value or +1 from previous cell
+    if (currX == -1 && currY == -1 && arr[nextY][nextX].value == 0){
+
+        return true;
+
+    }
+
+    else if ((abs(currX - nextX) == 1 && currY == nextY) || (abs(currY - nextY) == 1 && currX == nextX)){
+
+        if (arr[currY][currX].color == arr[nextY][nextX].color){
+
+            if (arr[currY][currX].value == arr[nextY][nextX].value || arr[currY][currX].value + 1 == arr[nextY][nextX].value){
+                return true;
+            }
+        }
+
+    }
+
+    return false;
+
 }

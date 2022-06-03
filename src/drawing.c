@@ -1,13 +1,13 @@
 #include "test.h"
 
 
-void drawRect(int x, int y, int side, int margin, Color color){
+void drawRect(int x, int y, Color color){
 
-    DrawRectangle(margin + (side * x), margin + (side * y), side, side, color);
+    DrawRectangle(margin + (sqrSide * x), margin + (sqrSide * y), sqrSide, sqrSide, color);
 
 }
 
-void drawLevel(Cell arr[11][11], int x, int y, int sqrSide, int margin, Color selectColor, int width, int height){
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
 
     Color sqrColor;
     
@@ -28,7 +28,7 @@ void drawLevel(Cell arr[11][11], int x, int y, int sqrSide, int margin, Color se
                 sqrColor = YELLOW;
             }
 
-            drawRect(x, y, sqrSide, margin, sqrColor);
+            drawRect(x, y, sqrColor);
 
             if (arr[y][x].value != -1){
                 char str[2];
@@ -39,7 +39,21 @@ void drawLevel(Cell arr[11][11], int x, int y, int sqrSide, int margin, Color se
         }
     }
 
-    hoverClick(arr, x, y, width, height, sqrSide, margin, selectColor);
+    int hoverX, hoverY;
+    hoverOn(&hoverX, &hoverY);
+
+    // if (arr[hoverY][hoverX].value == 0 && !arr[hoverX][hoverY].correct){
+        
+    //     DrawText("haha", 15, 15, 14.5, BLACK);
+
+    // }
+
+    // if (IsMouseButtonPressed(0)){
+    //     DrawText("lmao", 15, 15, 14.5, BLACK);
+    // }
+
+
+    hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY);
 
     EndDrawing();
 

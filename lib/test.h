@@ -19,6 +19,12 @@ typedef struct gameCell
     
 } Cell;
 
+#define screenWidth 550 * 1.5
+#define screenHeight 550 * 1.5
+#define sqrSide 50 * 1.5 //
+#define margin 0 * 1.5 //
+#define selectColor {150, 255, 30, 0.5}
+
 // #pragma region Cells & Level handling
 
 Cell createNewCell(int value, int color);
@@ -33,23 +39,23 @@ void getLevelSize(int level, int* width, int* height);
 // void baseArray(int level, int arr[11][11]); // work in progress do not touch
 // void getBase(int level, int base[11][11], int* width, int* height);
 // void genLevel(Cell** arr, int base[11][11], int width, int height);
-bool conditions(Cell** arr, int currX, int currY, int nextX, int nextY);
 void checkWin(Cell** arr, int color, int width, int height);
 
 // #pragma endregion
 
 // #pragma region Mouse
 
-void hoverOn(int* x, int* y, int size, int margin);
-bool isHover(int x, int y, int size, int margin);
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int sqrSide, int margin, Color selectColor);
+void hoverOn(int* x, int* y);
+bool isHover(int x, int y);
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY);
+bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY);
 
 // #pragma endregion
 
 // #pragma region Drawing Handling
 
-void drawLevel(Cell arr[11][11], int x, int y, int sqrSide, int margin, Color selectColor, int width, int height);
-void drawRect(int x, int y, int side, int margin, Color color);
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY);
+void drawRect(int x, int y, Color color);
 
 // #pragma endregion
 

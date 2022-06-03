@@ -306,11 +306,9 @@ int main()
 {
     // Initialization
     // --------------------------------------------------------------------------------------
-    const int screenWidth = 550;
-    const int screenHeight = 550;
     
     int windowState = 1;
-    int level = 1;
+    int level = 2;
 
     // int base[11][11];
     // int arrWidth = 0, arrHeight = 0;
