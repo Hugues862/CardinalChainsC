@@ -22,6 +22,10 @@ typedef struct gameCell
 
 #define screenWidth (550 * 1.5)
 #define screenHeight (550 * 1.5)
+
+#define levelWidth (floor((11 - width) / 2))
+#define levelHeight (floor((11 - height) / 2))
+
 #define sqrSide (50 * 1.5) //
 #define margin (0 * 1.5) //
 

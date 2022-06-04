@@ -2,8 +2,8 @@
 
 void game(int level){
 
-    int levelWidth, levelHeight;
-    getLevelSize(level, &levelWidth, &levelHeight);
+    int baseWidth, baseHeight;
+    getLevelSize(level, &baseWidth, &baseHeight);
 
     bool gameState = true;
     Cell arr[11][11];
@@ -19,7 +19,7 @@ void game(int level){
     
     while(gameState == true){
         
-        drawLevel(arr, levelWidth, levelHeight, &prevX, &prevY);
+        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY);
         
     }
 

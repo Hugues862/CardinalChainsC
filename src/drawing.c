@@ -18,8 +18,8 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
     // time_t t;
     // srand((unsigned) time(&t) + rand());
 
-    for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
-        for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
+    for (int y = levelHeight; y < levelHeight + height; y++){
+        for (int x = levelWidth; x < levelWidth + width; x++){
 
             if (arr[y][x].value == -1){
                 // sqrColor = (Color)getColor((int)rand() % 3);

@@ -30,43 +30,26 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
     DrawText(xPos, 15 + 15, 15 * 3, 14.5, BLACK);
     DrawText(yPos, 15 + 15, 15 * 4, 14.5, BLACK);
 
-    if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonDown(0)) {
+    if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonPressed(0)) {
         // Can only click & hover on first, neigbours, close value and same color cells
         
         arr[y][x].selected = true;
 
-        bool select = true;
         *prevX = x;
         *prevY = y;
         DrawText("pog", 15, 15, 14.5, BLACK);
 
-
-        // while(select){
-        //     if (IsMouseButtonPressed(0)){ // Click & select 
-
-        //         DrawText("haha", 15, 15, 14.5, BLACK);
-        //         int posX = 0, posY = 0;
-        //         hoverOn(&posX, &posY, sqrSide, margin);
-
-        //         if (!(posX == prevX && posY == prevY) && conditions(arr, prevX, prevY, posX, posY)){
-                    
-        //             arr[posY][posX].selected = true;
-        //             drawRect(posX, posY, sqrSide, margin, selectColor);
-                    
-        //             prevX = posX;
-        //             prevY = posY;
-        //         }
-        //     }
-
-        //     if (IsMouseButtonPressed(1)){
-
-        //         DrawText("lmao", 15, 15, 14.5, BLACK);
-        //         checkWin(arr, arr[y][x].color, width, height);
-        //         select = false;
-
-        //     }
-        // }
     }
+
+    if (IsMouseButtonDown(1)){
+
+        DrawText("lmao", 15, 15, 14.5, BLACK);
+        checkWin(arr, arr[*prevY][*prevX].color, width, height);
+        *prevX = -1;
+        *prevY = -1;
+
+    }
+    
     
 }
 

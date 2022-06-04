@@ -198,8 +198,8 @@ void checkWin(Cell arr[11][11], int color, int width, int height){
 
     bool change = true;
 
-    for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
-        for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
+    for (int y = levelHeight; y < levelHeight + height; y++){
+        for (int x = levelWidth; x < levelWidth + width; x++){
 
             if (arr[y][x].color == color){
                 if (arr[y][x].selected == false){
@@ -212,8 +212,8 @@ void checkWin(Cell arr[11][11], int color, int width, int height){
     }
 
     if (change == true){
-        for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
-            for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
+        for (int y = levelHeight; y < levelHeight + height; y++){
+            for (int x = levelWidth; x < levelWidth + width; x++){
 
                 if (arr[y][x].color == color){
                     arr[y][x].correct = true;
