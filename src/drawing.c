@@ -7,7 +7,7 @@ void drawRect(int x, int y, Color color){
 
 }
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, bool* gameState){
 
     Color sqrColor;
     
@@ -61,7 +61,7 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
     // }
     */
 
-    hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY);
+    hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY, gameState);
 
     EndDrawing();
 

@@ -1,9 +1,9 @@
 #include "test.h"
 
-void game(int level){
+void game(int* level, int* windowState){
 
     int baseWidth, baseHeight;
-    getLevelSize(level, &baseWidth, &baseHeight);
+    getLevelSize(*level, &baseWidth, &baseHeight);
 
     bool gameState = true;
     Cell arr[11][11];
@@ -15,12 +15,14 @@ void game(int level){
         }
     }
 
-    setLevel(arr, level);
+    setLevel(arr, *level);
     
     while(gameState == true){
         
-        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY);
+        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
         
     }
+
+    *level = *level + 1;
 
 }

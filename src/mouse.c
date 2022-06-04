@@ -22,7 +22,7 @@ bool isHover(int x, int y){
 
 }
 
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY){
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, bool* gameState){
 
     char xPos[20], yPos[20];
     sprintf(xPos, "Value of x : %d", x);
@@ -44,24 +44,18 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
     if (IsMouseButtonDown(1)){
 
         DrawText("lmao", 15, 15, 14.5, BLACK);
-        checkWin(arr, arr[*prevY][*prevX].color, width, height);
+        checkWinColor(arr, arr[*prevY][*prevX].color, width, height);
+        checkWin(arr, width, height, gameState);
         *prevX = -1;
         *prevY = -1;
 
-    }
-    
-    
+    }   
 }
 
-bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY){
-
+bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY) {
 
     // Checks if hovered cell is same color, same value or +1 from previous cell
-    if (currX == -1 && currY == -1 && arr[nextY][nextX].value == 0){
-
-        return true;
-
-    }
+    if (currX == -1 && currY == -1 && arr[nextY][nextX].value == 0) { return true; }
 
     else if ((abs(currX - nextX) == 1 && currY == nextY) || (abs(currY - nextY) == 1 && currX == nextX)){
 
@@ -71,12 +65,66 @@ bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY){
                 return true;
             }
         }
-
     }
 
     DrawText("TEST FAILED", 15 + 15, 15 + 15, 14.5, BLACK);
 
-
     return false;
+}
+
+void checkWinColor(Cell arr[11][11], int color, int width, int height){
+
+    // Will check if every cell of X color is selected, if yes turn Correct into True
+
+    bool change = true;
+
+    for (int y = levelHeight; y < levelHeight + height; y++){
+        for (int x = levelWidth; x < levelWidth + width; x++){
+
+            if (arr[y][x].color == color){
+                if (arr[y][x].selected == false || change == false){
+                    change = false;
+                    break;
+                }
+                arr[y][x].selected = false;
+            }
+
+        }
+    }
+
+    if (change == true){
+        for (int y = levelHeight; y < levelHeight + height; y++){
+            for (int x = levelWidth; x < levelWidth + width; x++){
+
+                if (arr[y][x].color == color){
+                    arr[y][x].correct = true;
+                }
+
+            }
+        }
+    }
+}
+
+void checkWin(Cell arr[11][11], int width, int height, bool* gameState){
+
+    bool win = true;
+
+    for (int y = levelHeight; y < levelHeight + height; y++){
+        for (int x = levelWidth; x < levelWidth + width; x++){
+
+            if ((arr[y][x].correct == false && arr[y][x].value != -1) || win == false){
+                win = false;
+                break;
+            }
+
+        }
+    }
+
+    if (win == true){
+
+        *gameState = false;
+        
+    }
+
 
 }

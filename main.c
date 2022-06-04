@@ -56,7 +56,7 @@ int main()
             //     menu(&level);
             //     break;
             case 1: // Draw Level
-                game(level);
+                game(&level, &windowState);
 
         }
     }
