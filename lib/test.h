@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 typedef struct gameCell
 {
@@ -19,10 +20,10 @@ typedef struct gameCell
     
 } Cell;
 
-#define screenWidth 550 * 1.5
-#define screenHeight 550 * 1.5
-#define sqrSide 50 * 1.5 //
-#define margin 0 * 1.5 //
+#define screenWidth (550 * 1.5)
+#define screenHeight (550 * 1.5)
+#define sqrSide (50 * 1.5) //
+#define margin (0 * 1.5) //
 
 // #pragma region Cells & Level handling
 
@@ -38,7 +39,7 @@ void getLevelSize(int level, int* width, int* height);
 // void baseArray(int level, int arr[11][11]); // work in progress do not touch
 // void getBase(int level, int base[11][11], int* width, int* height);
 // void genLevel(Cell** arr, int base[11][11], int width, int height);
-void checkWin(Cell** arr, int color, int width, int height);
+void checkWin(Cell arr[11][11], int color, int width, int height);
 
 // #pragma endregion
 
@@ -46,7 +47,7 @@ void checkWin(Cell** arr, int color, int width, int height);
 
 void hoverOn(int* x, int* y);
 bool isHover(int x, int y);
-void hoverClick(Cell* arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY);
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY);
 bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY);
 
 // #pragma endregion

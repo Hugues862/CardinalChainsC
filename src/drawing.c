@@ -14,11 +14,15 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
+    
+    // time_t t;
+    // srand((unsigned) time(&t) + rand());
 
     for (int y = floor((11 - height) / 2); y < floor((11 - height) / 2) + height; y++){
         for (int x = floor((11 - width) / 2); x < floor((11 - width) / 2) + width; x++){
 
             if (arr[y][x].value == -1){
+                // sqrColor = (Color)getColor((int)rand() % 3);
                 sqrColor = RAYWHITE;
             }
             else if (arr[y][x].correct == true){
@@ -41,15 +45,11 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
 
         }
     }
-    
-    char* str;
-    if (arr[5][5].selected) {str = "True";}
-    else { str = "False";}
-    DrawText(str, 15 + 15, 15 + 15, 14.5, BLACK);
 
     int hoverX, hoverY;
     hoverOn(&hoverX, &hoverY);
 
+    /*
     // if (arr[hoverY][hoverX].value == 0 && !arr[hoverX][hoverY].correct){
         
     //     DrawText("haha", 15, 15, 14.5, BLACK);
@@ -59,9 +59,9 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY){
     // if (IsMouseButtonPressed(0)){
     //     DrawText("lmao", 15, 15, 14.5, BLACK);
     // }
+    */
 
-
-    hoverClick(&arr, hoverX, hoverY, width, height, prevX, prevY);
+    hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY);
 
     EndDrawing();
 

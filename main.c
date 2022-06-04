@@ -308,7 +308,7 @@ int main()
     // --------------------------------------------------------------------------------------
     
     int windowState = 1;
-    int level = 2;
+    int level = 1;
 
     // int base[11][11];
     // int arrWidth = 0, arrHeight = 0;

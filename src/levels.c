@@ -189,10 +189,10 @@ Color getColor(int colorCode){
             return PURPLE;
     }
 
-    return WHITE;
+    return RAYWHITE;
 }
 
-void checkWin(Cell** arr, int color, int width, int height){
+void checkWin(Cell arr[11][11], int color, int width, int height){
 
     // Will check if every cell of X color is selected, if yes turn Correct into True
 
