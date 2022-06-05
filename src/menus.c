@@ -1,11 +1,29 @@
 #include "test.h"
 
+void menu(int* level, int* windowState) {
+
+    int menuState = 0;
+
+    while(menuState == 0){
+
+
+
+    }
+
+    if (menuState == 1) {
+
+        *windowState = 1;
+
+    }
+
+}
+
 void game(int* level, int* windowState){
 
     int baseWidth, baseHeight;
     getLevelSize(*level, &baseWidth, &baseHeight);
 
-    bool gameState = true;
+    int gameState = 0;
     Cell arr[11][11];
     int prevX = -1, prevY = -1;
 
@@ -17,12 +35,25 @@ void game(int* level, int* windowState){
 
     setLevel(arr, *level);
     
-    while(gameState == true){
+    while(gameState == 0){
         
         drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
         
     }
 
-    *level = *level + 1;
+    if (gameState == 1){
+        *level = *level + 1;
+        *windowState = 2;
+    }
+
+    else if (gameState == 2){
+        *windowState = 0; // return to Menu
+    }
+
+}
+
+void nextMenu(int* windowState){
+
+
 
 }

@@ -35,7 +35,9 @@ typedef struct gameCell
 
 #pragma region Game & Menu Handling
 
+void menu(int* level, int* windowState);
 void game(int* level, int* windowState);
+void nextMenu(int* windowState);
 
 #pragma endregion
 
@@ -53,7 +55,7 @@ void getLevelSize(int level, int* width, int* height);
 
 void hoverOn(int* x, int* y);
 bool isHover(int x, int y);
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, bool* gameState);
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState);
 
 #pragma endregion
 
@@ -61,13 +63,16 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
 
 bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY);
 void checkWinColor(Cell arr[11][11], int color, int width, int height);
-void checkWin(Cell arr[11][11], int width, int height, bool* gameState);
+void checkWin(Cell arr[11][11], int width, int height, int* gameState);
 
 #pragma endregion
 
 #pragma region Drawing 
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, bool* gameState);
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState);
 void drawRect(int x, int y, Color color);
+void drawMenu(int* level, int* menuState);
+void drawNextScreen(int* menuState);
 
 #pragma endregion
+

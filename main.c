@@ -53,11 +53,15 @@ int main()
         switch (windowState){
 
             // case 0: // Menu
-            //     menu(&level);
+            //     menu(&level, &windowState);
             //     break;
+
             case 1: // Draw Level
                 game(&level, &windowState);
-
+                break;
+            
+            // case 2:
+            //     nextMenu(&windowState);
         }
     }
 

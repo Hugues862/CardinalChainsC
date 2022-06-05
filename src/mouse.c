@@ -22,13 +22,15 @@ bool isHover(int x, int y){
 
 }
 
-void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, bool* gameState){
+void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState){
 
-    char xPos[20], yPos[20];
+    char xPos[20], yPos[20], selectState[25];
     sprintf(xPos, "Value of x : %d", x);
     sprintf(yPos, "Value of y : %d", y);
+    sprintf(selectState, "Value of select : %d", (int)arr[y][x].selected);
     DrawText(xPos, 15 + 15, 15 * 3, 14.5, BLACK);
     DrawText(yPos, 15 + 15, 15 * 4, 14.5, BLACK);
+    DrawText(selectState, 15 + 15, 15 * 5, 14.5, BLACK);
 
     if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonPressed(0)) {
         // Can only click & hover on first, neigbours, close value and same color cells
@@ -82,11 +84,12 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
         for (int x = levelWidth; x < levelWidth + width; x++){
 
             if (arr[y][x].color == color){
-                if (arr[y][x].selected == false || change == false){
+                if (arr[y][x].selected == false){
                     change = false;
-                    break;
                 }
+
                 arr[y][x].selected = false;
+                
             }
 
         }
@@ -105,15 +108,18 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
     }
 }
 
-void checkWin(Cell arr[11][11], int width, int height, bool* gameState){
+void checkWin(Cell arr[11][11], int width, int height, int* gameState){
 
     bool win = true;
 
     for (int y = levelHeight; y < levelHeight + height; y++){
         for (int x = levelWidth; x < levelWidth + width; x++){
 
-            if ((arr[y][x].correct == false && arr[y][x].value != -1) || win == false){
+            if (arr[y][x].correct == false && arr[y][x].value != -1){
                 win = false;
+            }
+
+            if (win == false) {
                 break;
             }
 
@@ -122,9 +128,8 @@ void checkWin(Cell arr[11][11], int width, int height, bool* gameState){
 
     if (win == true){
 
-        *gameState = false;
+        *gameState = 1;
         
     }
-
 
 }

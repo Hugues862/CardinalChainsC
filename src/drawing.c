@@ -7,7 +7,13 @@ void drawRect(int x, int y, Color color){
 
 }
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, bool* gameState){
+void drawMenu(int* level, int* menuState){
+
+
+    
+}
+
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState){
 
     Color sqrColor;
     
@@ -49,20 +55,14 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
     int hoverX, hoverY;
     hoverOn(&hoverX, &hoverY);
 
-    /*
-    // if (arr[hoverY][hoverX].value == 0 && !arr[hoverX][hoverY].correct){
-        
-    //     DrawText("haha", 15, 15, 14.5, BLACK);
-
-    // }
-
-    // if (IsMouseButtonPressed(0)){
-    //     DrawText("lmao", 15, 15, 14.5, BLACK);
-    // }
-    */
-
     hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY, gameState);
 
     EndDrawing();
+
+}
+
+void drawNextScreen(int* menuState){
+
+
 
 }
