@@ -21,7 +21,7 @@ void setLevel(Cell arr[11][11], int level){
     switch(level){
 
         #pragma region Level 1
-        case 1:
+        case 0:
             arr[5][5] = createNewCell(1, 0);
             arr[5][4] = createNewCell(1, 0);
             arr[6][4] = createNewCell(1, 0);
@@ -33,7 +33,7 @@ void setLevel(Cell arr[11][11], int level){
         #pragma endregion
 
         #pragma region Level 2
-        case 2:
+        case 1:
             arr[5][5] = createNewCell(0, 0);
             arr[5][4] = createNewCell(1, 0);
             arr[6][4] = createNewCell(1, 0);
@@ -47,7 +47,7 @@ void setLevel(Cell arr[11][11], int level){
         #pragma endregion
 
         #pragma region Level 3
-        case 3:
+        case 2:
             arr[5][4] = createNewCell(0, 0);
             arr[6][4] = createNewCell(1, 0);
             arr[6][5] = createNewCell(2, 0);
@@ -61,7 +61,7 @@ void setLevel(Cell arr[11][11], int level){
         #pragma endregion
 
         #pragma region Level 4
-        case 4:
+        case 3:
             arr[3][3] = createNewCell(0, 0);
             arr[3][4] = createNewCell(1, 0);
             arr[3][5] = createNewCell(1, 0);
@@ -96,7 +96,7 @@ void setLevel(Cell arr[11][11], int level){
         #pragma endregion
 
         #pragma region Level 5
-        case 5:
+        case 4:
 
             arr[3][3] = createNewCell(0, 0);
             arr[3][4] = createNewCell(1, 0);
@@ -130,7 +130,7 @@ void setLevel(Cell arr[11][11], int level){
         #pragma endregion
 
         #pragma region Level 6
-        case 6:
+        case 5:
             arr[2][4] = createNewCell(0, 0);
             arr[2][5] = createNewCell(1, 0);
             arr[2][6] = createNewCell(1, 0);
@@ -174,29 +174,29 @@ void getLevelSize(int level, int* width, int* height){
 
     switch(level){
 
-        case 1:
+        case 0:
             *width = 3;
             *height = 3;
             break;
         
-        case 2:
+        case 1:
             *width = 3;
             *height = 3;
             break;
 
-        case 3:
+        case 2:
             *width = 3;
             *height = 3;
+
+        case 3:
+            *width = 5;
+            *height = 5;
 
         case 4:
             *width = 5;
             *height = 5;
 
         case 5:
-            *width = 5;
-            *height = 5;
-
-        case 6:
             *width = 5;
             *height = 6;
     }

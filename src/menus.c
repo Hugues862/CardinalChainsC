@@ -45,7 +45,7 @@ void game(int* level, int* windowState){
 
         if (*level == MAXLEVEL) *windowState = 0;
         
-        *level = (*level + 1) % MAXLEVEL + 1;
+        *level = (*level + 1) % MAXLEVEL;
     }
 
     if (gameState == 2) *windowState = 2;

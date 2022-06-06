@@ -43,7 +43,7 @@ void drawMenu(int* level, int* menuState){
         60, RAYWHITE);
     
     char selectedLevel[3];
-    sprintf(selectedLevel, "%d", *level);
+    sprintf(selectedLevel, "%d", *level + 1);
     DrawText(selectedLevel, (realScreenWidth*0.5)-(MeasureText(selectedLevel, 200)/2), realScreenHeight*0.5, 200, BLACK);
 
     plusButton(level);
