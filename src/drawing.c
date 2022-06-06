@@ -101,7 +101,10 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
             if (arr[y][x].value != -1){
                 char str[2];
                 sprintf(str, "%d", arr[y][x].value);
-                DrawText(str, margin + (sqrSide * x) + 15, margin + (sqrSide * y) + 15, 14.5, BLACK);
+                DrawText(str, 
+                margin + (sqrSide * x)+20, 
+                margin + (sqrSide * y)+10, 
+                32, BLACK);
             }
 
         }

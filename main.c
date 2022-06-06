@@ -32,7 +32,7 @@ int main()
     // Initialization
     // --------------------------------------------------------------------------------------
     
-    int windowState = 0;
+    int windowState = 1;
     int level = 1;
 
     // int base[11][11];
