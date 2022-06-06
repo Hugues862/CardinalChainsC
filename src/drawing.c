@@ -8,9 +8,50 @@ void drawRect(int x, int y, Color color){
 }
 
 void drawMenu(int* level, int* menuState){
-
-
     
+
+    BeginDrawing();
+
+    ClearBackground(RAYWHITE);
+
+    DrawText("CardinalChains", (realScreenWidth*0.5)-(MeasureText("CardinalChains", 60)/2), 40, 60, BLACK);
+
+        DrawText("Choose your level", (realScreenWidth*0.5)-(MeasureText("Choose your level", 30)/2), 150, 30, BLACK);
+
+
+    //Left button
+    DrawRectangle(
+        realScreenWidth*0.5-200-realScreenWidth*0.15, 
+        realScreenHeight*0.6, 
+        realScreenWidth*0.15, 
+        realScreenHeight*0.1, 
+        BLACK);
+    DrawText("-", 
+        (realScreenWidth*0.5-200-realScreenWidth*0.15)+(realScreenWidth*0.15/2)-(MeasureText("-", 60)/2),
+        (realScreenHeight*0.6)+(realScreenHeight*0.1/3)-(MeasureText("-", 60)/2),
+        60, RAYWHITE);
+
+    //Right button
+    DrawRectangle(
+        realScreenWidth*0.5+200, 
+        realScreenHeight*0.6, 
+        realScreenWidth*0.15, 
+        realScreenHeight*0.1, 
+        BLACK);
+    DrawText("+", 
+        (realScreenWidth*0.5+200)+(realScreenWidth*0.15/2)-(MeasureText("+", 60)/2),
+        (realScreenHeight*0.6)+(realScreenHeight*0.1/3)-(MeasureText("+", 60)/2),
+        60, RAYWHITE);
+    
+    char selectedLevel[3];
+    sprintf(selectedLevel, "%d", *level);
+    DrawText(selectedLevel, (realScreenWidth*0.5)-(MeasureText(selectedLevel, 200)/2), realScreenHeight*0.5, 200, BLACK);
+
+    plusButton(level);
+    minusButton(level);
+
+    EndDrawing();
+
 }
 
 void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState){

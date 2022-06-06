@@ -22,14 +22,18 @@ typedef struct gameCell
 
 #pragma region GLOBAL VARIABLES
 
-#define screenWidth (550 * 1.5)
-#define screenHeight (550 * 1.5)
+#define screenWidth (550 * 1)
+#define screenHeight (550 * 1)
+#define realScreenWidth (screenWidth +(margin*2) )
+#define realScreenHeight (screenHeight +(margin*2) )
+
 
 #define levelWidth (floor((11 - width) / 2))
 #define levelHeight (floor((11 - height) / 2))
 
-#define sqrSide (50 * 1.5)
-#define margin (100 * 1.5)
+#define sqrSide (50 * 1)
+#define margin (100 * 1)
+
 
 #pragma endregion
 
