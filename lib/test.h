@@ -1,4 +1,14 @@
 
+// ! Attention pour la documentation technique, il est 
+// ! recommandé d'utiliser l'extension Better Comments
+// ? L'extension :
+// Id: aaron-bond.better-comments
+// Description: Improve your code commenting by annotating with alert, informational, TODOs, and more!
+// Version: 3.0.0
+// Publisher: Aaron Bond
+// VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+
+
 #include "raylib.h"
 
 #include <stdbool.h>
@@ -7,47 +17,59 @@
 #include <stdlib.h>
 #include <math.h>
 
+// * Game Cell Structure Definition
 typedef struct gameCell
+
 {
-    // int position[2];
-    int value; // Value of the cell (Number appearing on it)
-    int color; // Value of the color (0 -> Red, 1 -> Blue, ect)
-    // int path; // Value of path (0 -> start, 1 -> nextCorrect)
-    // bool hover;
-    bool selected; // Change color when true
+    int value; // Valeur de la cellule
+    int color; // Valeur de la couleur (0 -> Red, 1 -> Blue, ect)
+    bool selected; // 
     bool correct;
     
 } Cell;
 
-#pragma region GLOBAL VARIABLES ------------------------------------------------
+// ? ----------------------------------------
+// ? ---------- VARIABLES GLOBALES -----------
+// ? ----------------------------------------
+#pragma region 
 
-#define screenMultiplier 1.2
+// ! VALEUR AFIN DE SCALE LA FENÊTRE
+#define screenMultiplier 1.2 // 
 
-#define screenWidth (550 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
-#define screenHeight (550 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
+// ! POUR CELLULES ET FENÊTRE MODULABLE ET CENTRÉE
+#define screenWidth (550 * screenMultiplier) 
+#define screenHeight (550 * screenMultiplier) 
 #define realScreenWidth (screenWidth +(margin*2) )
 #define realScreenHeight (screenHeight +(margin*2) )
 
-#define levelWidth (floor((11 - width) / 2))
-#define levelHeight (floor((11 - height) / 2))
-
-#define sqrSide (50 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
+#define sqrSide (50 * screenMultiplier)
 #define margin (100 * screenMultiplier)
 
-#define NumberOfLevel 6 // Number of existing levels
-#define MAXLEVEL (NumberOfLevel - 1) // DO NOT TOUCH
+#define levelWidth (floor((11 - width) / 2))
+#define levelHeight (floor((11 - height) / 2))
+// ! ----
+
+// ! NOMBRE DE NIVEAUX 
+#define NumberOfLevel 6 // Incrémenter en cas d'ajout de niveaux
+#define MAXLEVEL (NumberOfLevel - 1) // ? DO NOT TOUCH
+// ! ----
 
 #pragma endregion ------------------------------------------------
 
-#pragma region Game & Menu Handling ------------------------------------------------
+// ? ----------------------------------------
+// ? --------- Game & Menu Handling ---------
+// ? ----------------------------------------
+#pragma region 
 
 void menu(int* level, int* windowState);
 void game(int* level, int* windowState);
-void nextMenu(int* windowState);
 
-#pragma endregion ------------------------------------------------
+#pragma endregion
 
-#pragma region Cells & Level handling ------------------------------------------------
+// ? ----------------------------------------
+// ? -------- Cells & Level handling --------
+// ? ----------------------------------------
+#pragma region 
 
 Cell createNewCell(int value, int color);
 Color getColor(int colorCode);
@@ -57,19 +79,25 @@ void getLevelSize(int level, int* width, int* height);
 
 #pragma endregion ------------------------------------------------
 
-#pragma region Mouse & Click ------------------------------------------------
+// ? ----------------------------------------
+// ? -------- Mouse & Click -----------------
+// ? ----------------------------------------
+#pragma region 
 
-void escQuit(int* windowState);
-
+void escQuit(int* windowState, int newValue);
 void plusButton(int* level);
 void minusButton(int* level);
-void playButton(int* level, int* menuState);
+void playButton(int* menuState);
 void hoverOn(int* x, int* y);
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState);
 
 #pragma endregion ------------------------------------------------
 
-#pragma region Check & conditions ------------------------------------------------
+
+// ? ----------------------------------------
+// ? -------- Check & conditions ------------
+// ? ----------------------------------------
+#pragma region 
 
 bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY);
 void checkWinColor(Cell arr[11][11], int color, int width, int height);
@@ -77,7 +105,11 @@ void checkWin(Cell arr[11][11], int width, int height, int* gameState);
 
 #pragma endregion ------------------------------------------------
 
-#pragma region Drawing ------------------------------------------------
+
+// ? ----------------------------------------
+// ? ------------- Drawing ------------------
+// ? ----------------------------------------
+#pragma region
 
 void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState);
 void drawRect(int x, int y, Color color);

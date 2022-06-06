@@ -1,24 +1,37 @@
 #include "test.h"
 
+/**
+ * @brief Fonction menu qui affiche le menu,
+ * menuState = 0 -> menu,
+ * menuState = 1 -> début du jeu,
+ * menuState = 2 -> quitter
+ * 
+ * @param level 
+ * @param windowState 
+ */
 void menu(int* level, int* windowState) {
 
     int menuState = 0;
 
-    while(menuState == 0){
+    while(menuState == 0){ // * Draws the Menu 
 
         drawMenu(level, &menuState);
-        escQuit(&menuState);
+        escQuit(&menuState, 2);
 
     }
 
-    if (menuState == 1) *windowState = 1;
+    if (menuState == 1) *windowState = 1; // * Start Game
 
-    if (menuState == 2) *windowState = 2;
+    if (menuState == 2) *windowState = 2; // * Quit Window
 
 }
-
+/**
+ * @brief Fonction générale qui va calculé les tailles des cellules, Affiche les cellules, vérifie si la touche ESC est enfoncé et vérifie si le jeu est terminé.
+ * 
+ * @param level 
+ * @param windowState 
+ */
 void game(int* level, int* windowState){
-
     int baseWidth, baseHeight;
     getLevelSize(*level, &baseWidth, &baseHeight);
 
@@ -37,7 +50,7 @@ void game(int* level, int* windowState){
     while(gameState == 0){
         
         drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
-        escQuit(&gameState);
+        escQuit(&gameState, 2);
         
     }
 

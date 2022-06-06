@@ -1,6 +1,12 @@
 
 #include "test.h"
 
+/**
+ * @brief Création d'une nouvelle cellule
+ * 
+ * @param value 
+ * @param color 
+ */
 Cell createNewCell(int value, int color){
 
     Cell newCell;
@@ -16,6 +22,13 @@ Cell createNewCell(int value, int color){
 
 }
 
+/**
+ * @brief Selection du niveau
+ * 
+ * @param level 
+ * @param width 
+ * @param height 
+ */
 void setLevel(Cell arr[11][11], int level){
 
     switch(level){
@@ -170,6 +183,14 @@ void setLevel(Cell arr[11][11], int level){
 
 }
 
+
+/**
+ * @brief Obtiens la taille du niveau.
+ * 
+ * @param level 
+ * @param width 
+ * @param height 
+ */
 void getLevelSize(int level, int* width, int* height){
 
     switch(level){
@@ -203,6 +224,12 @@ void getLevelSize(int level, int* width, int* height){
 
 }
 
+/**
+ * @brief Obtiens l'objet couleur en fonction du code
+ * 
+ * @param colorCode 
+ * @return Color 
+ */
 Color getColor(int colorCode){
 
     switch(colorCode){

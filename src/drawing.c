@@ -1,12 +1,24 @@
 #include "test.h"
 
-
+/**
+ * @brief Affichage d'un rectangle a la position x, y de du niveau.
+ * 
+ * @param x 
+ * @param y 
+ * @param color
+ */
 void drawRect(int x, int y, Color color){
     
     DrawRectangle(margin + (sqrSide * x), margin + (sqrSide * y), sqrSide, sqrSide, color);
 
 }
 
+/**
+ * @brief Fonction d'affichage du menu, Affiche les texts et les boutons.
+ * 
+ * @param level 
+ * @param menuState 
+ */
 void drawMenu(int* level, int* menuState){
     
 
@@ -60,12 +72,27 @@ void drawMenu(int* level, int* menuState){
         (realScreenHeight*0.8)+(100/3),
         60, RAYWHITE);
 
-    playButton(level, menuState);
+    playButton(menuState);
 
     EndDrawing();
 
 }
 
+
+/**
+ * @brief Fonction qui affiche le niveau, la fonction fonctionne comme suivant :
+ * Parcours la matrice 2d level ce qui correspond à chaque cellule
+ * en fonction des conditions, on définie la couleur de la cellule.
+ * On appelle la fonction drawRect pour afficher la cellule.
+ * Suivi de l'affichage du numero de la cellule.
+ * 
+ * @param arr 
+ * @param width 
+ * @param height 
+ * @param prevX 
+ * @param prevY 
+ * @param gameState 
+ */
 void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState){
 
     Color sqrColor;
