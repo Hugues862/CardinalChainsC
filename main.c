@@ -42,7 +42,7 @@ int main()
     
     // genLevel(arr, base, arrWidth, arrHeight);
 
-    InitWindow(screenWidth, screenHeight, "raylib");
+    InitWindow(screenWidth + (2 * margin), screenHeight + (2 * margin), "raylib");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 

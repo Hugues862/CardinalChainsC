@@ -29,7 +29,7 @@ typedef struct gameCell
 #define levelHeight (floor((11 - height) / 2))
 
 #define sqrSide (50 * 1.5)
-#define margin (0 * 1.5)
+#define margin (100 * 1.5)
 
 #pragma endregion
 

@@ -20,6 +20,7 @@ void setLevel(Cell arr[11][11], int level){
 
     switch(level){
 
+        #pragma region Level 1
         case 1:
             arr[5][5] = createNewCell(1, 0);
             arr[5][4] = createNewCell(1, 0);
@@ -29,7 +30,9 @@ void setLevel(Cell arr[11][11], int level){
             arr[4][4] = createNewCell(0, 0);
             arr[4][6] = createNewCell(2, 0);
             break;
+        #pragma endregion
 
+        #pragma region Level 2
         case 2:
             arr[5][5] = createNewCell(0, 0);
             arr[5][4] = createNewCell(1, 0);
@@ -41,6 +44,68 @@ void setLevel(Cell arr[11][11], int level){
             arr[4][5] = createNewCell(2, 0);
             arr[4][4] = createNewCell(2, 0);
             break;
+        #pragma endregion
+
+        #pragma region Level 3
+        case 3:
+            arr[5][4] = createNewCell(0, 0);
+            arr[6][4] = createNewCell(1, 0);
+            arr[6][5] = createNewCell(2, 0);
+            arr[6][6] = createNewCell(3, 0);
+
+            arr[5][6] = createNewCell(0, 1);
+            arr[4][6] = createNewCell(1, 1);
+            arr[4][5] = createNewCell(2, 1);
+            arr[4][4] = createNewCell(3, 1);
+            break;
+        #pragma endregion
+
+        #pragma region Level 4
+        case 4:
+            arr[3][3] = createNewCell(0, 0);
+            arr[3][4] = createNewCell(1, 0);
+            arr[3][5] = createNewCell(1, 0);
+            arr[3][6] = createNewCell(2, 0);
+            arr[3][7] = createNewCell(2, 0);
+
+            arr[4][3] = createNewCell(0, 1);
+            arr[4][4] = createNewCell(1, 1);
+            arr[4][5] = createNewCell(1, 1);
+            arr[4][6] = createNewCell(2, 1);
+            arr[4][7] = createNewCell(2, 1);
+
+            arr[5][3] = createNewCell(0, 2);
+            arr[5][4] = createNewCell(1, 2);
+            arr[5][5] = createNewCell(1, 2);
+            arr[5][6] = createNewCell(2, 2);
+            arr[5][7] = createNewCell(2, 2);
+
+            arr[6][3] = createNewCell(0, 3);
+            arr[6][4] = createNewCell(1, 3);
+            arr[6][5] = createNewCell(1, 3);
+            arr[6][6] = createNewCell(2, 3);
+            arr[6][7] = createNewCell(2, 3);
+
+            arr[7][3] = createNewCell(0, 4);
+            arr[7][4] = createNewCell(1, 4);
+            arr[7][5] = createNewCell(1, 4);
+            arr[7][6] = createNewCell(2, 4);
+            arr[7][7] = createNewCell(2, 4);
+
+            break;
+        #pragma endregion
+
+        #pragma region Level 5
+        case 5:
+
+            arr[3][3] = createNewCell(0, 0);
+            arr[3][4] = createNewCell(1, 0);
+            arr[3][5] = createNewCell(1, 0);
+            arr[3][6] = createNewCell(1, 0);
+            arr[3][7] = createNewCell(1, 0);
+            arr[4][6] = createNewCell(1, 0);
+            break;
+        #pragma endregion
     }
 
 }
@@ -59,6 +124,14 @@ void getLevelSize(int level, int* width, int* height){
             *height = 3;
             break;
 
+        case 3:
+            *width = 3;
+            *height = 3;
+
+        case 4:
+            *width = 5;
+            *height = 5;
+
     }
 
 }
@@ -72,6 +145,10 @@ Color getColor(int colorCode){
             return GREEN;
         case 2:
             return PURPLE;
+        case 3:
+            return MAROON;
+        case 4:
+            return ORANGE;
     }
 
     return RAYWHITE;

@@ -24,6 +24,7 @@ bool isHover(int x, int y){
 
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState){
 
+    // DEBUG -------
     char xPos[20], yPos[20], selectState[25];
     sprintf(xPos, "Value of x : %d", x);
     sprintf(yPos, "Value of y : %d", y);
@@ -31,6 +32,10 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
     DrawText(xPos, 15 + 15, 15 * 3, 14.5, BLACK);
     DrawText(yPos, 15 + 15, 15 * 4, 14.5, BLACK);
     DrawText(selectState, 15 + 15, 15 * 5, 14.5, BLACK);
+    //-------------------------------
+
+    DrawText("LMB : Use to Select", (screenWidth + (2 * margin)) * 0.8, 25 * 2, 20, BLACK);
+    DrawText("RMB : Use to Confirm", (screenWidth + (2 * margin)) * 0.8, 25 * 3, 20, BLACK);
 
     if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonPressed(0)) {
         // Can only click & hover on first, neigbours, close value and same color cells
@@ -39,13 +44,11 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
 
         *prevX = x;
         *prevY = y;
-        DrawText("pog", 15, 15, 14.5, BLACK);
 
     }
 
     if (IsMouseButtonDown(1)){
 
-        DrawText("lmao", 15, 15, 14.5, BLACK);
         checkWinColor(arr, arr[*prevY][*prevX].color, width, height);
         checkWin(arr, width, height, gameState);
         *prevX = -1;
