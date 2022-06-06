@@ -69,15 +69,6 @@ void hoverOn(int* x, int* y){
     *y = posY;
 }
 
-bool isHover(int x, int y){
-
-    int posX = 0, posY = 0;
-    hoverOn(&posX, &posY);
-
-    return posX == x && posY == y;
-
-}
-
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState){
 
     /* DEBUG -------

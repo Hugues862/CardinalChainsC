@@ -64,7 +64,6 @@ void plusButton(int* level);
 void minusButton(int* level);
 void playButton(int* level, int* menuState);
 void hoverOn(int* x, int* y);
-bool isHover(int x, int y);
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState);
 
 #pragma endregion ------------------------------------------------
