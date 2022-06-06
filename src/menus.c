@@ -20,7 +20,7 @@ void game(int* level, int* windowState){
 
     int baseWidth, baseHeight;
     getLevelSize(*level, &baseWidth, &baseHeight);
-    int sqrSide = 50;
+    int sqrSide = 50 * screenMultiplier;
 
     int gameState = 0;
     Cell arr[11][11];

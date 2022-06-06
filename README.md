@@ -12,6 +12,7 @@ Au préalable installer raylib.
 
 ### Pour Lancer sur VSCode :
 
+-   Vérifier qu'un fichier nommé main autre que main.c et main.exe ne se trouve pas dans le workspace
 -   Appuyer sur F5 lorsque main.c est ouvert
 
 ## MACOS :
