@@ -20,7 +20,7 @@ void plusButton(int* level){
 
                 if (*level < MAXLEVEL) *level = *level + 1; 
                 
-                else *level = 1; 
+                else *level = 0; 
             }
         }
     }

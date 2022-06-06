@@ -34,7 +34,8 @@ typedef struct gameCell
 #define sqrSide (50 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
 #define margin (100 * screenMultiplier)
 
-#define MAXLEVEL 6
+#define NumberOfLevel 6 // Number of existing levels
+#define MAXLEVEL (NumberOfLevel - 1) // DO NOT TOUCH
 
 #pragma endregion ------------------------------------------------
 
