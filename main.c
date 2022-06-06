@@ -32,7 +32,7 @@ int main()
     // Initialization
     // --------------------------------------------------------------------------------------
     
-    int windowState = 1;
+    int windowState = 0;
     int level = 1;
 
     // int base[11][11];
@@ -59,9 +59,6 @@ int main()
             case 1: // Draw Level
                 game(&level, &windowState);
                 break;
-            
-            // case 2:
-            //     nextMenu(&windowState);
         }
     }
 

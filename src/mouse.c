@@ -1,6 +1,7 @@
 
 #include "test.h"
 
+#pragma region Menu
 
 void plusButton(int* level){
     int mouseX, mouseY;
@@ -10,16 +11,13 @@ void plusButton(int* level){
         if (mouseX>realScreenWidth*0.5+200 && mouseX<realScreenWidth*0.5+200+realScreenWidth*0.15 && mouseY>realScreenHeight*0.6 && mouseY<realScreenHeight*0.6+realScreenHeight*0.1){
             
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-                if (*level < 30){
 
-                    *level = *level + 1;
-                }else{
-                    *level = 1;
-                }
+                if (*level < MAXLEVEL) { *level = *level + 1; }
+                
+                else { *level = 1; }
             }
         }
     }
-
 
 void minusButton(int* level){
     int mouseX, mouseY;
@@ -29,13 +27,10 @@ void minusButton(int* level){
         if (mouseX>realScreenWidth*0.5-200-realScreenWidth*0.15 && mouseX<realScreenWidth*0.5-200 && mouseY>realScreenHeight*0.6 && mouseY<realScreenHeight*0.6+realScreenHeight*0.1){
             
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-                if (*level > 1){
 
-                    *level = *level - 1;
-                }
-                else{
-                    *level = 30;
-                }
+                if (*level > 1) { *level = *level - 1; }
+
+                else { *level = MAXLEVEL; }
             }
         }
 
@@ -54,8 +49,11 @@ void playButton(int* level, int* menuState){
         }
 }
 
+#pragma endregion
 
-void hoverOn(int* x, int* y, int sqrSide){
+#pragma region Game
+
+void hoverOn(int* x, int* y){
 
     int posX, posY;
 
@@ -66,10 +64,10 @@ void hoverOn(int* x, int* y, int sqrSide){
     *y = posY;
 }
 
-bool isHover(int x, int y, int sqrSide){
+bool isHover(int x, int y){
 
     int posX = 0, posY = 0;
-    hoverOn(&posX, &posY, sqrSide);
+    hoverOn(&posX, &posY);
 
     return posX == x && posY == y;
 
@@ -77,7 +75,7 @@ bool isHover(int x, int y, int sqrSide){
 
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState){
 
-    // DEBUG -------
+    // /* DEBUG -------
     char xPos[20], yPos[20], selectState[25];
     sprintf(xPos, "Value of x : %d", x);
     sprintf(yPos, "Value of y : %d", y);
@@ -85,10 +83,10 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
     DrawText(xPos, 15 + 15, 15 * 3, 14.5, BLACK);
     DrawText(yPos, 15 + 15, 15 * 4, 14.5, BLACK);
     DrawText(selectState, 15 + 15, 15 * 5, 14.5, BLACK);
-    //-------------------------------
+    // ------------------------------- */
 
-    DrawText("LMB : Use to Select", (screenWidth + (2 * margin)) * 0.8, 25 * 2, 20, BLACK);
-    DrawText("RMB : Use to Confirm", (screenWidth + (2 * margin)) * 0.8, 25 * 3, 20, BLACK);
+    // DrawText("LMB : Use to Select", 15, 25 * 1, 20, BLACK);
+    // DrawText("RMB : Use to Confirm", 15, 25 * 2, 20, BLACK);
 
     if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonPressed(0)) {
         // Can only click & hover on first, neigbours, close value and same color cells
@@ -125,7 +123,7 @@ bool conditions(Cell arr[11][11], int currX, int currY, int nextX, int nextY) {
         }
     }
 
-    DrawText("TEST FAILED", 15 + 15, 15 + 15, 14.5, BLACK);
+    // DrawText("TEST FAILED", 15 + 15, 15 + 15, 14.5, BLACK); // DEBUG
 
     return false;
 }
@@ -189,3 +187,5 @@ void checkWin(Cell arr[11][11], int width, int height, int* gameState){
     }
 
 }
+
+#pragma endregion

@@ -1,8 +1,7 @@
 #include "test.h"
 
 
-void drawRect(int x, int y, Color color, int sqrSide){
-
+void drawRect(int x, int y, Color color){
     
     DrawRectangle(margin + (sqrSide * x), margin + (sqrSide * y), sqrSide, sqrSide, color);
 
@@ -68,7 +67,7 @@ void drawMenu(int* level, int* menuState){
 
 }
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState, int sqrSide){
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState){
 
     Color sqrColor;
     
@@ -96,7 +95,7 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
                 sqrColor = getColor(arr[y][x].color);
             } 
 
-            drawRect(x, y, sqrColor, sqrSide);
+            drawRect(x, y, sqrColor);
 
             if (arr[y][x].value != -1){
                 char str[2];
@@ -111,16 +110,10 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
     }
 
     int hoverX, hoverY;
-    hoverOn(&hoverX, &hoverY, sqrSide);
+    hoverOn(&hoverX, &hoverY);
 
     hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY, gameState);
 
     EndDrawing();
-
-}
-
-void drawNextScreen(int* menuState){
-
-
 
 }

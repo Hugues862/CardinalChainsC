@@ -135,20 +135,20 @@ void setLevel(Cell arr[11][11], int level){
             arr[2][5] = createNewCell(1, 0);
             arr[2][6] = createNewCell(1, 0);
 
-            arr[3][3] = createNewCell(5, 0);
-            arr[3][4] = createNewCell(5, 0);
-            arr[3][5] = createNewCell(5, 0);
+            arr[3][3] = createNewCell(1, 3);
+            arr[3][4] = createNewCell(1, 0);
+            arr[3][5] = createNewCell(1, 0);
             arr[3][6] = createNewCell(1, 0);
             arr[3][7] = createNewCell(1, 0);
             
-            arr[4][3] = createNewCell(5, 0);
+            arr[4][3] = createNewCell(1, 3);
             arr[4][4] = createNewCell(0, 5);
             arr[4][5] = createNewCell(1, 5);
             arr[4][6] = createNewCell(1, 5);
             arr[4][7] = createNewCell(1, 0);
 
-            arr[5][3] = createNewCell(4, 0);
-            arr[5][4] = createNewCell(3, 0);
+            arr[5][3] = createNewCell(1, 3);
+            arr[5][4] = createNewCell(0, 3);
             arr[5][5] = createNewCell(3, 0);
             arr[5][6] = createNewCell(2, 0);
             arr[5][7] = createNewCell(2, 0);

@@ -6,7 +6,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
 typedef struct gameCell
 {
@@ -21,19 +20,21 @@ typedef struct gameCell
 } Cell;
 
 #pragma region GLOBAL VARIABLES
+
 #define screenMultiplier 1.2
 
-#define screenWidth (550 * screenMultiplier)
-#define screenHeight (550 * screenMultiplier)
+#define screenWidth (550 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
+#define screenHeight (550 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
 #define realScreenWidth (screenWidth +(margin*2) )
 #define realScreenHeight (screenHeight +(margin*2) )
-
 
 #define levelWidth (floor((11 - width) / 2))
 #define levelHeight (floor((11 - height) / 2))
 
+#define sqrSide (50 * screenMultiplier) // DO NOT CHANGE OR NOT CENTERED
 #define margin (100 * screenMultiplier)
 
+#define MAXLEVEL 6
 
 #pragma endregion
 
@@ -60,8 +61,8 @@ void getLevelSize(int level, int* width, int* height);
 void plusButton(int* level);
 void minusButton(int* level);
 void playButton(int* level, int* menuState);
-void hoverOn(int* x, int* y, int sqrSide);
-bool isHover(int x, int y, int sqrSide);
+void hoverOn(int* x, int* y);
+bool isHover(int x, int y);
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState);
 
 #pragma endregion
@@ -76,10 +77,9 @@ void checkWin(Cell arr[11][11], int width, int height, int* gameState);
 
 #pragma region Drawing 
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState, int sqrSide);
-void drawRect(int x, int y, Color color, int sqrSide);
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState);
+void drawRect(int x, int y, Color color);
 void drawMenu(int* level, int* menuState);
-void drawNextScreen(int* menuState);
 
 #pragma endregion
 

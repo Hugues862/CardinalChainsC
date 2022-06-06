@@ -20,7 +20,6 @@ void game(int* level, int* windowState){
 
     int baseWidth, baseHeight;
     getLevelSize(*level, &baseWidth, &baseHeight);
-    int sqrSide = 50 * screenMultiplier;
 
     int gameState = 0;
     Cell arr[11][11];
@@ -36,37 +35,17 @@ void game(int* level, int* windowState){
     
     while(gameState == 0){
         
-        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState, sqrSide);
+        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
         
     }
 
     if (gameState == 1){
-        *level = *level + 1;
-        // *windowState = 2;
-    }
 
-    // else if (gameState == 2){
-    //     *windowState = 0; // return to Menu
-    // }
+        if (*level == MAXLEVEL){
+            *windowState = 0;
+        }
 
-}
-
-void nextMenu(int* windowState){
-
-    int menuState = 0;
-
-    while(menuState == 0){
-
-        drawNextScreen(&menuState);
-
-    }
-
-    if (menuState == 1) {
-        *windowState = 1;
-    }
-
-    else if (menuState == 2) {
-        *windowState = 0;
+        *level = (*level + 1) % MAXLEVEL + 1;
     }
 
 }
