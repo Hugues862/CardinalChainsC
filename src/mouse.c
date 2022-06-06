@@ -2,7 +2,60 @@
 #include "test.h"
 
 
-void hoverOn(int* x, int* y){
+void plusButton(int* level){
+    int mouseX, mouseY;
+    mouseX = GetMouseX();
+    mouseY = GetMouseY();
+
+        if (mouseX>realScreenWidth*0.5+200 && mouseX<realScreenWidth*0.5+200+realScreenWidth*0.15 && mouseY>realScreenHeight*0.6 && mouseY<realScreenHeight*0.6+realScreenHeight*0.1){
+            
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+                if (*level < 30){
+
+                    *level = *level + 1;
+                }else{
+                    *level = 1;
+                }
+            }
+        }
+    }
+
+
+void minusButton(int* level){
+    int mouseX, mouseY;
+    mouseX = GetMouseX();
+    mouseY = GetMouseY();
+
+        if (mouseX>realScreenWidth*0.5-200-realScreenWidth*0.15 && mouseX<realScreenWidth*0.5-200 && mouseY>realScreenHeight*0.6 && mouseY<realScreenHeight*0.6+realScreenHeight*0.1){
+            
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+                if (*level > 1){
+
+                    *level = *level - 1;
+                }
+                else{
+                    *level = 30;
+                }
+            }
+        }
+
+}
+
+void playButton(int* level, int* menuState){
+    int mouseX, mouseY;
+    mouseX = GetMouseX();
+    mouseY = GetMouseY();
+
+        if (mouseX>realScreenWidth*0.5-100 && mouseX<realScreenWidth*0.5-100+200 && mouseY>realScreenHeight*0.8 && mouseY<realScreenHeight*0.8+100){
+            
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+                *menuState = 1;
+            }
+        }
+}
+
+
+void hoverOn(int* x, int* y, int sqrSide){
 
     int posX, posY;
 
@@ -13,10 +66,10 @@ void hoverOn(int* x, int* y){
     *y = posY;
 }
 
-bool isHover(int x, int y){
+bool isHover(int x, int y, int sqrSide){
 
     int posX = 0, posY = 0;
-    hoverOn(&posX, &posY);
+    hoverOn(&posX, &posY, sqrSide);
 
     return posX == x && posY == y;
 

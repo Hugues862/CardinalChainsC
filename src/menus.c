@@ -20,6 +20,7 @@ void game(int* level, int* windowState){
 
     int baseWidth, baseHeight;
     getLevelSize(*level, &baseWidth, &baseHeight);
+    int sqrSide = 50;
 
     int gameState = 0;
     Cell arr[11][11];
@@ -35,7 +36,7 @@ void game(int* level, int* windowState){
     
     while(gameState == 0){
         
-        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
+        drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState, sqrSide);
         
     }
 

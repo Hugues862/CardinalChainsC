@@ -1,8 +1,9 @@
 #include "test.h"
 
 
-void drawRect(int x, int y, Color color){
+void drawRect(int x, int y, Color color, int sqrSide){
 
+    
     DrawRectangle(margin + (sqrSide * x), margin + (sqrSide * y), sqrSide, sqrSide, color);
 
 }
@@ -50,11 +51,24 @@ void drawMenu(int* level, int* menuState){
     plusButton(level);
     minusButton(level);
 
+    DrawRectangle(
+        realScreenWidth*0.5-100, 
+        realScreenHeight*0.8, 
+        200, 
+        100, 
+        BLACK);
+    DrawText("PLAY", 
+        (realScreenWidth*0.5-100)+(200/2)-(MeasureText("PLAY", 60)/2),
+        (realScreenHeight*0.8)+(100/3),
+        60, RAYWHITE);
+
+    playButton(level, menuState);
+
     EndDrawing();
 
 }
 
-void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState){
+void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, int* gameState, int sqrSide){
 
     Color sqrColor;
     
@@ -82,7 +96,7 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
                 sqrColor = getColor(arr[y][x].color);
             } 
 
-            drawRect(x, y, sqrColor);
+            drawRect(x, y, sqrColor, sqrSide);
 
             if (arr[y][x].value != -1){
                 char str[2];
@@ -94,7 +108,7 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
     }
 
     int hoverX, hoverY;
-    hoverOn(&hoverX, &hoverY);
+    hoverOn(&hoverX, &hoverY, sqrSide);
 
     hoverClick(arr, hoverX, hoverY, width, height, prevX, prevY, gameState);
 
