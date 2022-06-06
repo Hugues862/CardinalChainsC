@@ -385,6 +385,10 @@ $(PROJECT_NAME): $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM)
 
+
+osx:
+	cc main.c `pkg-config --libs --cflags raylib` -o main src/*.c $(INCLUDE_PATHS)
+
 # Clean everything
 clean:
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
