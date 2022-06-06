@@ -7,12 +7,13 @@ void menu(int* level, int* windowState) {
     while(menuState == 0){
 
         drawMenu(level, &menuState);
+        escQuit(&menuState);
 
     }
 
-    if (menuState == 1) {
-        *windowState = 1;
-    }
+    if (menuState == 1) *windowState = 1;
+
+    if (menuState == 2) *windowState = 2;
 
 }
 
@@ -36,16 +37,17 @@ void game(int* level, int* windowState){
     while(gameState == 0){
         
         drawLevel(arr, baseWidth, baseHeight, &prevX, &prevY, &gameState);
+        escQuit(&gameState);
         
     }
 
     if (gameState == 1){
 
-        if (*level == MAXLEVEL){
-            *windowState = 0;
-        }
-
+        if (*level == MAXLEVEL) *windowState = 0;
+        
         *level = (*level + 1) % MAXLEVEL + 1;
     }
+
+    if (gameState == 2) *windowState = 2;
 
 }

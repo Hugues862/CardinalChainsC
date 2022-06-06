@@ -60,6 +60,8 @@ int main()
                 game(&level, &windowState);
                 break;
         }
+
+        if (windowState == 2) { break; }
     }
 
     // De-Initialization

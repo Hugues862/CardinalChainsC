@@ -15,9 +15,8 @@ void drawMenu(int* level, int* menuState){
     ClearBackground(RAYWHITE);
 
     DrawText("CardinalChains", (realScreenWidth*0.5)-(MeasureText("CardinalChains", 60)/2), 40, 60, BLACK);
-
-        DrawText("Choose your level", (realScreenWidth*0.5)-(MeasureText("Choose your level", 30)/2), 150, 30, BLACK);
-
+    DrawText("Choose your level", (realScreenWidth*0.5)-(MeasureText("Choose your level", 30)/2), 150, 30, BLACK);
+    DrawText("ESC : Press to Quit the game", (realScreenWidth*0.5)-(MeasureText("ESC : Press to Quit the game", 20)/2), 200, 20, BLACK);
 
     //Left button
     DrawRectangle(
@@ -77,6 +76,8 @@ void drawLevel(Cell arr[11][11], int width, int height, int* prevX, int* prevY, 
     
     // time_t t;
     // srand((unsigned) time(&t) + rand());
+
+    DrawText("ESC : Press to Quit the game", 15, 25 * 1, 20, BLACK);
 
     for (int y = levelHeight; y < levelHeight + height; y++){
         for (int x = levelWidth; x < levelWidth + width; x++){

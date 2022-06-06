@@ -1,6 +1,12 @@
 
 #include "test.h"
 
+void escQuit(int* windowState){
+
+    if (WindowShouldClose()) *windowState = 2;
+
+}
+
 #pragma region Menu ----------------------------------------
 
 void plusButton(int* level){
@@ -12,9 +18,9 @@ void plusButton(int* level){
             
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
 
-                if (*level < MAXLEVEL) { *level = *level + 1; }
+                if (*level < MAXLEVEL) *level = *level + 1; 
                 
-                else { *level = 1; }
+                else *level = 1; 
             }
         }
     }
@@ -28,9 +34,9 @@ void minusButton(int* level){
             
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
 
-                if (*level > 1) { *level = *level - 1; }
+                if (*level > 1) *level = *level - 1;
 
-                else { *level = MAXLEVEL; }
+                else *level = MAXLEVEL; 
             }
         }
 
@@ -43,9 +49,8 @@ void playButton(int* level, int* menuState){
 
         if (mouseX>realScreenWidth*0.5-100 && mouseX<realScreenWidth*0.5-100+200 && mouseY>realScreenHeight*0.8 && mouseY<realScreenHeight*0.8+100){
             
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-                *menuState = 1;
-            }
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) *menuState = 1;
+            
         }
 }
 
@@ -75,7 +80,7 @@ bool isHover(int x, int y){
 
 void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prevX, int* prevY, int* gameState){
 
-    // /* DEBUG -------
+    /* DEBUG -------
     char xPos[20], yPos[20], selectState[25];
     sprintf(xPos, "Value of x : %d", x);
     sprintf(yPos, "Value of y : %d", y);
@@ -83,10 +88,10 @@ void hoverClick(Cell arr[11][11], int x, int y, int width, int height, int* prev
     DrawText(xPos, 15 + 15, 15 * 3, 14.5, BLACK);
     DrawText(yPos, 15 + 15, 15 * 4, 14.5, BLACK);
     DrawText(selectState, 15 + 15, 15 * 5, 14.5, BLACK);
-    // ------------------------------- */
+    ------------------------------- */
 
-    // DrawText("LMB : Use to Select", 15, 25 * 1, 20, BLACK);
-    // DrawText("RMB : Use to Confirm", 15, 25 * 2, 20, BLACK);
+    DrawText("LMB : Use to Select", 15, 25 * 2, 20, BLACK);
+    DrawText("RMB : Use to Confirm", 15, 25 * 3, 20, BLACK);
 
     if (conditions(arr, *prevX, *prevY, x, y) && arr[y][x].correct == false && IsMouseButtonPressed(0)) {
         // Can only click & hover on first, neigbours, close value and same color cells
@@ -138,10 +143,8 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
         for (int x = levelWidth; x < levelWidth + width; x++){
 
             if (arr[y][x].color == color){
-                if (arr[y][x].selected == false){
-                    change = false;
-                }
-
+                if (arr[y][x].selected == false) change = false;
+            
                 arr[y][x].selected = false;
 
             }
@@ -152,9 +155,8 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
         for (int y = levelHeight; y < levelHeight + height; y++){
             for (int x = levelWidth; x < levelWidth + width; x++){
 
-                if (arr[y][x].color == color){
-                    arr[y][x].correct = true;
-                }
+                if (arr[y][x].color == color) arr[y][x].correct = true;
+                
             }
         }
     }
@@ -167,19 +169,15 @@ void checkWin(Cell arr[11][11], int width, int height, int* gameState){
     for (int y = levelHeight; y < levelHeight + height; y++){
         for (int x = levelWidth; x < levelWidth + width; x++){
 
-            if (arr[y][x].correct == false && arr[y][x].value != -1){
-                win = false;
-            }
-
-            if (win == false) {
-                break;
-            }
+            if (arr[y][x].correct == false && arr[y][x].value != -1) win = false;
+            
+            if (win == false) break;
+            
         }
     }
 
-    if (win == true){
-        *gameState = 1;
-    }
+    if (win == true) *gameState = 1;
+    
 }
 
 #pragma endregion ----------------------------------------

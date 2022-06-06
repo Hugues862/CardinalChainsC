@@ -58,6 +58,8 @@ void getLevelSize(int level, int* width, int* height);
 
 #pragma region Mouse & Click ------------------------------------------------
 
+void escQuit(int* windowState);
+
 void plusButton(int* level);
 void minusButton(int* level);
 void playButton(int* level, int* menuState);
