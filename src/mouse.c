@@ -1,7 +1,7 @@
 
 #include "test.h"
 
-#pragma region Menu
+#pragma region Menu ----------------------------------------
 
 void plusButton(int* level){
     int mouseX, mouseY;
@@ -49,9 +49,9 @@ void playButton(int* level, int* menuState){
         }
 }
 
-#pragma endregion
+#pragma endregion ----------------------------------------
 
-#pragma region Game
+#pragma region Game ----------------------------------------
 
 void hoverOn(int* x, int* y){
 
@@ -143,9 +143,8 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
                 }
 
                 arr[y][x].selected = false;
-                
-            }
 
+            }
         }
     }
 
@@ -156,7 +155,6 @@ void checkWinColor(Cell arr[11][11], int color, int width, int height){
                 if (arr[y][x].color == color){
                     arr[y][x].correct = true;
                 }
-
             }
         }
     }
@@ -176,16 +174,12 @@ void checkWin(Cell arr[11][11], int width, int height, int* gameState){
             if (win == false) {
                 break;
             }
-
         }
     }
 
     if (win == true){
-
         *gameState = 1;
-        
     }
-
 }
 
-#pragma endregion
+#pragma endregion ----------------------------------------
